@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block title %}Sign In - PHRMS Health Gateway{% endblock %}
+
+{% block content %}
+<div class="content-container" style="max-width: 1080px; margin: 32px auto;">
+  <div style="background-color: var(--clean-white); border: 1px solid var(--border-color); border-radius: var(--radius-xl); box-shadow: var(--shadow-sheet); overflow: hidden; display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));">
+    
+    <!-- Left Column: Clinical Brand & Security Overview -->
+    <div style="background: linear-gradient(145deg, var(--surgical-blue) 0%, var(--trust-teal) 100%); color: var(--clean-white); padding: 48px 40px; display: flex; flex-direction: column; justify-content: space-between;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+          <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background-color: rgba(255,255,255,0.2); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center;">
+            <span class="material-symbols-outlined" style="font-size: 26px;">health_and_safety</span>
+          </div>
+          <div>
+            <h2 style="font-size: 1.3rem; margin: 0; color: #ffffff;">PHRMS Gateway</h2>
+            <span style="font-size: 12px; opacity: 0.9;">Secure Personal Health Record Cloud</span>
+          </div>
+        </div>
+
+        <div style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background-color: rgba(255,255,255,0.15); border-radius: var(--radius-full); font-size: 11px; font-weight: 600; margin-bottom: 24px;">
+          <span class="material-symbols-outlined" style="font-size: 14px;">lock</span>
+          256-Bit TLS &amp; RBAC Guarded Gateway
+        </div>
+
+        <h1 style="font-size: 1.7rem; font-weight: 800; color: #ffffff; line-height: 1.3; margin-bottom: 16px;">
+          One Gateway.<br />Unified Institutional Security.
+        </h1>
+
+        <p style="font-size: 14px; opacity: 0.95; line-height: 1.6; margin-bottom: 28px;">
+          Role-determined workspace routing dynamically establishes contextual views upon authenticated identity: Patient User, Attending Physician, Operations Registrar, or System Administrator.
+        </p>
+
+        <div style="background-color: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border-radius: var(--radius-lg); padding: 16px; border: 1px solid rgba(255,255,255,0.2);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #93f2f2;">Gateway Topology</span>
+            <span style="display: flex; align-items: center; gap: 6px; font-size: 11px; font-family: var(--font-mono); color: #ffffff;">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--health-green); display: inline-block;"></span>
+              Active Session Gate
+            </span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px;">
+            <div>
+              <span style="opacity: 0.75; display: block; font-size: 11px;">Token Standard</span>
+              <strong style="color: #ffffff;">Flask RBAC Session</strong>
+            </div>
+            <div>
+              <span style="opacity: 0.75; display: block; font-size: 11px;">National Health Reg</span>
+              <strong style="color: #ffffff;">SL-LK-PHR-8091</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 32px; font-size: 12px; opacity: 0.8; display: flex; justify-content: space-between;">
+        <span>MIS 4500 Capstone Prototype</span>
+        <span>Fall 2026</span>
+      </div>
+    </div>
+
+    <!-- Right Column: Authentication Form & Instant Demo Role Switcher -->
+    <div style="padding: 44px 36px; display: flex; flex-direction: column; justify-content: space-between;">
+      <div>
+        <div style="margin-bottom: 24px;">
+          <h2 style="font-size: 1.5rem; font-weight: 700; margin: 0 0 6px;">Institutional Sign In</h2>
+          <p style="font-size: 13.5px; color: var(--text-secondary); margin: 0;">
+            Enter your email and password, or choose an instant pre-seeded role below.
+          </p>
+        </div>
+
+        <!-- Standard Login Form -->
+        <form method="POST" action="{{ url_for('auth.login') }}" style="margin-bottom: 28px;">
+          <div class="form-group">
+            <label class="form-label" for="email">Account Email</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="name@hospital.lk" required value="amara.perera@health.lk" />
+          </div>
+
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <label class="form-label" for="password" style="margin: 0;">Password</label>
+              <span style="font-size: 11px; font-family: var(--font-mono); color: var(--text-muted);">Default: password123</span>
+            </div>
+            <input type="password" id="password" name="password" class="form-control" required value="password123" />
+          </div>
+
+          <button type="submit" class="btn btn-surgical" style="width: 100%; padding: 12px; font-size: 14.5px;">
+            <span class="material-symbols-outlined">login</span> Authenticate &amp; Enter Workspace
+          </button>
+        </form>
+
+        <!-- Divider -->
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+          <div style="flex: 1; height: 1px; background-color: var(--border-color);"></div>
+          <span style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary);">
+            Instant Demo Logins (One-Click)
+          </span>
+          <div style="flex: 1; height: 1px; background-color: var(--border-color);"></div>
+        </div>
+
+        <!-- 4 Instant Role Cards -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <!-- Patient -->
+          <a href="{{ url_for('auth.demo_switch', role='patient') }}" 
+             style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-md); text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; background-color: var(--surface-low); transition: all 0.15s ease;"
+             onmouseover="this.style.borderColor='var(--surgical-blue)'; this.style.backgroundColor='#ffffff';"
+             onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='var(--surface-low)';">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 30px; height: 30px; border-radius: var(--radius-sm); background-color: var(--surgical-blue-tint); color: var(--surgical-blue); display: flex; align-items: center; justify-content: center;">
+                <span class="material-symbols-outlined" style="font-size: 18px;">person</span>
+              </div>
+              <div>
+                <strong style="font-size: 12.5px; color: var(--text-primary); display: block;">Patient</strong>
+                <span style="font-size: 11px; color: var(--text-secondary);">Amara Perera</span>
+              </div>
+            </div>
+            <span style="font-size: 11px; color: var(--surgical-blue); font-weight: 600; margin-top: 8px;">Log In &rarr;</span>
+          </a>
+
+          <!-- Doctor -->
+          <a href="{{ url_for('auth.demo_switch', role='doctor') }}" 
+             style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-md); text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; background-color: var(--surface-low); transition: all 0.15s ease;"
+             onmouseover="this.style.borderColor='var(--trust-teal)'; this.style.backgroundColor='#ffffff';"
+             onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='var(--surface-low)';">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 30px; height: 30px; border-radius: var(--radius-sm); background-color: var(--trust-teal-tint); color: var(--trust-teal); display: flex; align-items: center; justify-content: center;">
+                <span class="material-symbols-outlined" style="font-size: 18px;">stethoscope</span>
+              </div>
+              <div>
+                <strong style="font-size: 12.5px; color: var(--text-primary); display: block;">Physician</strong>
+                <span style="font-size: 11px; color: var(--text-secondary);">Dr. Nalin Bandara</span>
+              </div>
+            </div>
+            <span style="font-size: 11px; color: var(--trust-teal); font-weight: 600; margin-top: 8px;">Log In &rarr;</span>
+          </a>
+
+          <!-- Registrar -->
+          <a href="{{ url_for('auth.demo_switch', role='reviewer') }}" 
+             style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-md); text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; background-color: var(--surface-low); transition: all 0.15s ease;"
+             onmouseover="this.style.borderColor='#a36410'; this.style.backgroundColor='#ffffff';"
+             onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='var(--surface-low)';">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 30px; height: 30px; border-radius: var(--radius-sm); background-color: #fff8f4; color: #a36410; display: flex; align-items: center; justify-content: center;">
+                <span class="material-symbols-outlined" style="font-size: 18px;">fact_check</span>
+              </div>
+              <div>
+                <strong style="font-size: 12.5px; color: var(--text-primary); display: block;">Registrar</strong>
+                <span style="font-size: 11px; color: var(--text-secondary);">Malini Fernando</span>
+              </div>
+            </div>
+            <span style="font-size: 11px; color: #a36410; font-weight: 600; margin-top: 8px;">Log In &rarr;</span>
+          </a>
+
+          <!-- Admin -->
+          <a href="{{ url_for('auth.demo_switch', role='admin') }}" 
+             style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-md); text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; background-color: var(--surface-low); transition: all 0.15s ease;"
+             onmouseover="this.style.borderColor='var(--text-primary)'; this.style.backgroundColor='#ffffff';"
+             onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='var(--surface-low)';">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 30px; height: 30px; border-radius: var(--radius-sm); background-color: var(--border-color); color: var(--text-primary); display: flex; align-items: center; justify-content: center;">
+                <span class="material-symbols-outlined" style="font-size: 18px;">admin_panel_settings</span>
+              </div>
+              <div>
+                <strong style="font-size: 12.5px; color: var(--text-primary); display: block;">Admin</strong>
+                <span style="font-size: 11px; color: var(--text-secondary);">K. Wickramasinghe</span>
+              </div>
+            </div>
+            <span style="font-size: 11px; color: var(--text-primary); font-weight: 600; margin-top: 8px;">Log In &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

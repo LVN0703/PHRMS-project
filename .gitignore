@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Database (keep schema and seed.py, ignore local SQLite DB instance)
+instance/
+*.sqlite3
+
+# Operating System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary uploads (keep directory, ignore dynamic test uploads)
+static/uploads/*
+!static/uploads/.gitkeep

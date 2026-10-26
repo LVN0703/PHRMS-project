@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Access Denied (403) - PHRMS Security Gate{% endblock %}
+
+{% block content %}
+<div class="content-container" style="max-width: 680px; margin: 48px auto; text-align: center;">
+  <div class="phrms-card" style="border-top: 5px solid var(--aid-red); padding: 40px 32px;">
+    <div style="width: 64px; height: 64px; border-radius: var(--radius-full); background-color: var(--aid-red-tint); color: var(--aid-red); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;">
+      <span class="material-symbols-outlined" style="font-size: 36px;">gpp_bad</span>
+    </div>
+
+    <span class="badge badge-rejected" style="font-size: 11px; margin-bottom: 8px;">HTTP 403 • FORBIDDEN</span>
+    <h1 style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary); margin: 6px 0 12px;">
+      Access Denied: Patient Consent Required
+    </h1>
+
+    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px;">
+      In accordance with Sovereign Patient Data Ownership (FR06 / FR07), this clinical dossier and its health records can only be accessed by a healthcare provider who has been actively granted consent by the patient.
+    </p>
+
+    <div style="background-color: var(--surface-low); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px 16px; margin-bottom: 24px; font-family: var(--font-mono); font-size: 12px; color: var(--aid-red-text); text-align: left;">
+      <span class="material-symbols-outlined" style="font-size: 14px; vertical-align: middle;">security</span>
+      Security Event Recorded: UNAUTHORIZED_ACCESS_ATTEMPT logged in central tamper-evident audit ledger.
+    </div>
+
+    <div style="display: flex; justify-content: center; gap: 12px;">
+      <a href="{{ url_for('auth.demo_switch', role='patient') }}" class="btn btn-surgical btn-sm">
+        <span class="material-symbols-outlined">person</span> Switch to Patient Amara to Grant Access
+      </a>
+      <a href="{{ url_for('index') }}" class="btn btn-outline btn-sm">
+        <span class="material-symbols-outlined">home</span> Home
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

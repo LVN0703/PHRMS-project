@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error-container": "#93000a", "inverse-surface": "#2d3134", "on-error": "#ffffff", "surface-tint": "#00658b", "secondary": "#006a6a", "clean-white": "#FFFFFF", "on-secondary": "#ffffff", "on-primary-fixed-variant": "#004c69", "primary-fixed": "#c4e7ff", "surface-container-low": "#f1f4f8", "background": "#f7fafd", "secondary-fixed": "#93f2f2", "on-background": "#181c1f", "surface-container-highest": "#e0e3e7", "primary-fixed-dim": "#7cd0ff", "primary-container": "#007ba7", "error": "#ba1a1a", "tertiary": "#834d00", "cool-gray": "#A9B0B3", "on-tertiary-fixed": "#2c1600", "inverse-primary": "#7cd0ff", "surface-container-lowest": "#ffffff", "primary": "#006184", "inverse-on-surface": "#eef1f5", "app-bg": "#F4F7F8", "on-secondary-fixed-variant": "#004f4f", "surface-bright": "#f7fafd", "on-surface-variant": "#3f484e", "on-tertiary-fixed-variant": "#683c00", "outline-variant": "#bfc8cf", "text-secondary": "#5A6570", "surface-variant": "#e0e3e7", "surface-dim": "#d7dade", "secondary-container": "#90efef", "health-green": "#4CAF50", "surface-container-high": "#e5e8ec", "error-container": "#ffdad6", "on-surface": "#181c1f", "on-secondary-container": "#006e6e", "text-primary": "#1E293B", "aid-red": "#D62828", "on-primary-fixed": "#001e2c", "outline": "#6f787f", "surface": "#f7fafd", "on-primary-container": "#f5faff", "tertiary-container": "#a36410", "secondary-fixed-dim": "#76d6d5", "on-tertiary": "#ffffff", "tertiary-fixed": "#ffdcbc", "on-secondary-fixed": "#002020", "surface-container": "#ebeef2", "tertiary-fixed-dim": "#ffb86c", "on-tertiary-container": "#fff8f4", "on-primary": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "16px", "gutter": "24px", "space-xl": "32px", "space-xs": "4px", "space-lg": "24px", "space-sm": "8px", "margin": "32px" }, "fontFamily": { "headline-lg": [ "Inter" ], "label-md": [ "Plus Jakarta Sans" ], "body-lg": [ "Inter" ], "label-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Inter" ], "headline-md": [ "Inter" ], "body-sm": [ "Inter" ], "mono-data": [ "JetBrains Mono" ], "headline-sm": [ "Inter" ] }, "fontSize": { "headline-lg": [ "32px", { "lineHeight": "40px", "fontWeight": "600" } ], "label-md": [ "14px", { "lineHeight": "20px", "fontWeight": "500" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "label-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "500" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-md": [ "24px", { "lineHeight": "32px", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "mono-data": [ "13px", { "lineHeight": "18px", "fontWeight": "400" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "fontWeight": "600" } ] } } } }</script></head><body class="bg-background font-body-md text-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest"><div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-on-primary"><span class="material-symbols-outlined text-[22px]">local_hospital</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight leading-none">AegisPHR</span><span class="font-label-sm text-label-sm text-on-surface-variant">Clinical Health Cloud</span></div></div><div class="px-space-md py-space-sm bg-surface-container-low"><div class="p-space-sm bg-surface-container rounded-lg flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-health-green"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Current Active View</span></div><span class="px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Physician</span></div></div><nav class="flex flex-col gap-1 px-space-md py-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-sm"><div class="px-space-sm py-1 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Patient Central</div><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="patient-dashboard" href="#"><span class="material-symbols-outlined text-[20px]">account_circle</span><span class="font-body-md text-body-md">Patient Records</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="consent-and-access-sharing" href="#"><span class="material-symbols-outlined text-[20px]">lock_person</span><span class="font-body-md text-body-md">Consent &amp; Sharing</span></a><div class="px-space-sm pt-space-md pb-1 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Clinical &amp; Operations</div><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="physician-clinical-portal" href="#"><span class="material-symbols-outlined text-[20px]">stethoscope</span><span class="font-body-md text-body-md">Physician Portal</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-sm transition-colors bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-sm" data-path="document-review-queue" href="#"><span class="material-symbols-outlined text-[20px]">fact_check</span><span class="font-body-md text-body-md">Review Queue</span></a><div class="px-space-sm pt-space-md pb-1 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Governance</div><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="system-administration" href="#"><span class="material-symbols-outlined text-[20px]">admin_panel_settings</span><span class="font-body-md text-body-md">Admin Console</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="compliance-audit-logs" href="#"><span class="material-symbols-outlined text-[20px]">shield</span><span class="font-body-md text-body-md">Audit Ledger</span></a></nav></div><div class="p-space-md bg-surface-container-lowest"><div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-lg"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface font-semibold leading-none">Dr. E. Vance</span><span class="font-label-sm text-label-sm text-on-surface-variant">Staff ID #9042</span></div></div><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="system-login" href="#" title="Sign out"><span class="material-symbols-outlined text-[20px]">logout</span></a></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/85 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1.5 rounded-lg"><span class="material-symbols-outlined text-on-surface-variant text-[18px]">supervised_user_circle</span><span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Switch Role:</span><div class="flex items-center gap-1"><a class="px-2 py-0.5 rounded font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="patient-dashboard" href="#">Patient</a><a class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-primary text-on-primary font-semibold transition-colors" data-path="physician-clinical-portal" href="#">Doctor</a><a class="px-2 py-0.5 rounded font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="document-review-queue" href="#">Registrar</a><a class="px-2 py-0.5 rounded font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="system-administration" href="#">Admin</a></div></div></div><div class="flex items-center gap-space-md"><div class="relative flex items-center"><button class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors relative" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-aid-red"></span></button></div><div class="relative flex items-center"><button class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">help</span></button></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-label-md font-semibold text-on-surface leading-tight">Dr. Eleanor Vance, MD</span><span class="font-label-sm text-label-sm text-secondary font-medium leading-tight">Cardiology Attending</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-16 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Operational Ambient Backdrop -->
+<div class="p-space-lg flex flex-col gap-space-lg w-full max-w-[1600px] mx-auto">
+<!-- Top SLA Triage Bar / Ticker -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col xl:flex-row items-start xl:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md flex-wrap">
+<div class="flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-secondary/10 text-secondary">
+<span class="w-2 h-2 rounded-full bg-health-green animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-semibold tracking-wide uppercase">Operational Hub • FR03</span>
+</div>
+<div class="h-4 w-px bg-surface-container-highest hidden sm:block"></div>
+<div class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-primary">timer</span>
+<span class="font-label-md text-label-md font-semibold">Queue SLA Target: &lt;45 Mins</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">(Strict Enforcement)</span>
+</div>
+<div class="px-space-xs py-0.5 rounded-full bg-health-green/15 text-health-green font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> 100% On-Track
+        </div>
+</div>
+<!-- Quick Metrics Counter Strip -->
+<div class="flex items-center gap-space-lg flex-wrap">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[16px]">pending_actions</span>
+</div>
+<div class="flex flex-col">
+<span class="font-mono-data text-mono-data font-bold text-on-surface leading-none">3 Pending</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Requires Audit</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-health-green">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+</div>
+<div class="flex flex-col">
+<span class="font-mono-data text-mono-data font-bold text-on-surface leading-none">18 Approved</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Cleared Today</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">speed</span>
+</div>
+<div class="flex flex-col">
+<span class="font-mono-data text-mono-data font-bold text-on-surface leading-none">18m Avg</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Turnaround Rate</span>
+</div>
+</div>
+<!-- Operator Badge -->
+<div class="flex items-center gap-space-sm pl-space-md border-l border-surface-container-highest">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-md text-label-md font-semibold">
+            MF
+          </div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Malini Fernando</span>
+<span class="font-mono-data text-body-sm text-text-secondary">REG-LK-88410</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Workspace Split -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN: Pending Submissions Queue (4 Cols) -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<!-- Queue Header with Filters -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">inbox</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Review Intake</span>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold">3 In Queue</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Verify patient-uploaded clinical records prior to permanent EHR ledger indexing.</p>
+<div class="relative mt-space-xs">
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full bg-surface-container-low text-on-surface pl-9 pr-3 py-1.5 rounded-lg text-body-sm font-body-sm placeholder:text-on-surface-variant outline-none focus:bg-surface-container transition-all" placeholder="Filter by PHR, patient, or doc type..." type="text"/>
+</div>
+</div>
+<!-- Queue Item List -->
+<div class="flex flex-col gap-space-sm" id="queue-list">
+<!-- Item 1: Active Selection (Amara Perera) -->
+<div class="bg-secondary-container/30 border-l-4 border-secondary rounded-xl p-space-md shadow-sm transition-all cursor-pointer relative overflow-hidden group">
+<div class="absolute right-3 top-3">
+<span class="px-2 py-0.5 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm font-semibold flex items-center gap-1 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-clean-white animate-ping"></span> Active Audit
+              </span>
+</div>
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-secondary text-on-secondary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[22px]">cardiology</span>
+</div>
+<div class="flex flex-col min-w-0 pr-16">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md font-bold text-on-surface truncate">Amara Perera</span>
+</div>
+<span class="font-mono-data text-mono-data text-secondary font-semibold">#PHR-94021</span>
+<span class="font-body-md text-body-md text-on-surface font-medium mt-1 truncate">ECG &amp; Cardiology Consultation Note</span>
+<div class="flex items-center gap-space-md mt-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1 font-mono-data">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 14m ago
+                  </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">priority_high</span> Triage: Normal
+                  </span>
+</div>
+</div>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between border-t border-secondary/15">
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Ready for inspection</span>
+<span class="material-symbols-outlined text-secondary text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+<!-- Item 2: K. G. Sunil Shantha -->
+<div class="bg-surface-container-lowest hover:bg-surface-container-low rounded-xl p-space-md shadow-sm transition-all cursor-pointer group">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">bloodtype</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface truncate">K. G. Sunil Shantha</span>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface-variant">#PHR-38194</span>
+<span class="font-body-md text-body-md text-on-surface-variant mt-1 truncate">Full Blood Count (FBC)</span>
+<div class="flex items-center gap-space-md mt-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1 font-mono-data">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 28m ago
+                  </span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-highest font-label-sm text-label-sm text-on-surface">Lab Report</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 3: Fathima Rizwan -->
+<div class="bg-surface-container-lowest hover:bg-surface-container-low rounded-xl p-space-md shadow-sm transition-all cursor-pointer group">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">radiology</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface truncate">Fathima Rizwan</span>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface-variant">#PHR-11208</span>
+<span class="font-body-md text-body-md text-on-surface-variant mt-1 truncate">Chest X-Ray Digital Scan</span>
+<div class="flex items-center gap-space-md mt-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1 font-mono-data">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 39m ago
+                  </span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-highest font-label-sm text-label-sm text-on-surface">Imaging</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Registrar Guidance Card -->
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-sm">
+<div class="flex items-center gap-space-xs text-secondary font-label-md text-label-md font-semibold mb-1">
+<span class="material-symbols-outlined text-[18px]">gavel</span> Audit Protocol Note
+          </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Ensure institutional accreditation seal is visible. Discrepancies in dates or unreadable ECG grid measurements must be marked for correction rather than immediate summary rejection.
+          </p>
+</div>
+</div>
+<!-- RIGHT COLUMN: Double-Blind Document Inspection & Decision Desk (8 Cols) -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<!-- TOP: Patient-Claimed Metadata Header Panel -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between flex-wrap gap-2">
+<div class="flex items-center gap-space-sm">
+<span class="px-2.5 py-1 rounded bg-secondary/15 text-secondary font-mono-data text-label-sm font-semibold">AUDIT-SESSION #0942-A</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Patient-Claimed Ingestion Data</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">history</span> History
+              </button>
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">compare</span> OCR Diff
+              </button>
+</div>
+</div>
+<!-- Metadata 5-Attribute Clinical Grid -->
+<div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-space-md p-space-md bg-surface-container-low rounded-xl">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Document Title</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface mt-0.5 truncate" title="Cardiology Consultation Note">Cardio Consult Note</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Clinical Category</span>
+<div class="mt-0.5">
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">Consultation Note</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Date of Event</span>
+<span class="font-mono-data text-mono-data font-semibold text-on-surface mt-0.5">2026-10-18</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Issuing Facility</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface mt-0.5 truncate" title="Nawaloka Heart Centre">Nawaloka Heart Centre</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Attending Clinician</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface mt-0.5 truncate" title="Dr. Rohan W.">Dr. Rohan W.</span>
+</div>
+</div>
+</div>
+<!-- CENTER: Realistic Document Inspection Viewer -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Viewer Top Toolbar -->
+<div class="px-space-md py-2.5 bg-surface-container flex items-center justify-between gap-space-md flex-wrap">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">document_scanner</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Inspection Viewport</span>
+<span class="font-mono-data text-body-sm text-on-surface-variant">(RAW_20261018_ECG_AMARA.PDF)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="w-8 h-8 rounded bg-surface-container-lowest hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-colors" id="zoom-out">
+<span class="material-symbols-outlined text-[18px]">zoom_out</span>
+</button>
+<span class="font-mono-data text-body-sm px-2 text-on-surface font-semibold" id="zoom-level">100%</span>
+<button class="w-8 h-8 rounded bg-surface-container-lowest hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-colors" id="zoom-in">
+<span class="material-symbols-outlined text-[18px]">zoom_in</span>
+</button>
+<div class="h-4 w-px bg-surface-container-highest mx-1"></div>
+<button class="w-8 h-8 rounded bg-surface-container-lowest hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-colors" title="Rotate Document">
+<span class="material-symbols-outlined text-[18px]">rotate_right</span>
+</button>
+<button class="w-8 h-8 rounded bg-surface-container-lowest hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-colors" title="Full Screen Inspection">
+<span class="material-symbols-outlined text-[18px]">fullscreen</span>
+</button>
+<div class="h-4 w-px bg-surface-container-highest mx-1"></div>
+<div class="flex items-center gap-1 font-mono-data text-body-sm text-on-surface px-2 py-0.5 rounded bg-surface-container-lowest">
+<span>Page</span>
+<span class="font-bold">1</span>
+<span>/</span>
+<span>1</span>
+</div>
+</div>
+</div>
+<!-- Document Canvas Area -->
+<div class="p-space-lg bg-surface-container-high overflow-auto flex justify-center items-start min-h-[460px]">
+<!-- Rendered Mock Clinical Document Page -->
+<div class="w-full max-w-[680px] bg-clean-white rounded-lg shadow-md p-space-xl flex flex-col gap-space-md text-text-primary transition-transform origin-top" id="document-canvas">
+<!-- Clinical Letterhead -->
+<div class="flex items-start justify-between pb-space-md border-b border-surface-container-highest">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-primary-container text-clean-white flex items-center justify-center font-headline-md font-bold">
+                    NHC
+                  </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">NAWALOKA HEART CENTRE</span>
+<span class="font-body-sm text-body-sm text-text-secondary">Cardiovascular &amp; Thoracic Specialty Unit • Colombo 02</span>
+<span class="font-mono-data text-body-sm text-text-secondary">Accreditation: SLMC-FAC-2024-91 • Hotline: +94 11 5577 111</span>
+</div>
+</div>
+<div class="text-right flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-aid-red uppercase tracking-wider">CONFIDENTIAL RECORD</span>
+<span class="font-mono-data text-body-sm text-text-secondary">REF: NHC-CV-94021</span>
+</div>
+</div>
+<!-- Patient & Visit Meta Block -->
+<div class="grid grid-cols-2 gap-space-md p-space-sm bg-surface-container-low rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-secondary">PATIENT NAME &amp; ID:</span>
+<span class="font-label-md text-label-md font-semibold text-text-primary">Amara Perera (F, 54y)</span>
+<span class="font-mono-data text-body-sm text-text-secondary">NIC: 197084501239</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-text-secondary">EXAMINATION DATE:</span>
+<span class="font-mono-data text-label-md font-bold text-text-primary">18-OCT-2026 10:45 AM</span>
+<span class="font-label-sm text-label-sm text-text-secondary">Lead Cardiologist: Dr. Rohan W., MD, FCCP</span>
+</div>
+</div>
+<!-- Clinical Summary Findings -->
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm font-bold text-text-primary uppercase tracking-wide">Clinical Presentation &amp; Impression</span>
+<p class="font-body-sm text-body-sm text-text-secondary leading-relaxed">
+                  Patient presented for follow-up evaluation following intermittent palpitations during mild exertion. Resting 12-lead ECG conducted at 25 mm/s, 10 mm/mV calibration. Sinus rhythm preserved with unremarkable PR interval. No ST-segment elevation or pathological Q waves noted.
+                </p>
+</div>
+<!-- ECG Waveform Mock Visualization -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-text-primary uppercase tracking-wide">Lead II Continuous Waveform Strip</span>
+<span class="font-mono-data text-body-sm text-text-secondary">Calibration: 25mm/s | 10mm/mV | HR: 72 bpm</span>
+</div>
+<div class="w-full h-24 bg-surface-container-lowest rounded relative overflow-hidden flex items-center justify-center p-2 shadow-inner">
+<!-- Grid backdrop -->
+<div class="absolute inset-0 opacity-20" style="background-size: 8px 8px; background-image: linear-gradient(to right, #ba1a1a 1px, transparent 1px), linear-gradient(to bottom, #ba1a1a 1px, transparent 1px);"></div>
+<!-- ECG SVG trace -->
+<svg class="w-full h-16 text-aid-red relative z-10" fill="none" preserveaspectratio="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewbox="0 0 600 60">
+<path d="M 0,30 L 40,30 L 45,28 L 50,32 L 55,30 L 80,30 L 85,26 L 90,30 L 100,30 L 105,33 L 110,5 L 115,55 L 120,30 L 130,30 L 140,24 L 150,30 L 190,30 L 195,28 L 200,32 L 205,30 L 230,30 L 235,26 L 240,30 L 250,30 L 255,33 L 260,5 L 265,55 L 270,30 L 280,30 L 290,24 L 300,30 L 340,30 L 345,28 L 350,32 L 355,30 L 380,30 L 385,26 L 390,30 L 400,30 L 405,33 L 410,5 L 415,55 L 420,30 L 430,30 L 440,24 L 450,30 L 490,30 L 495,28 L 500,32 L 505,30 L 530,30 L 535,26 L 540,30 L 550,30 L 555,33 L 560,5 L 565,55 L 570,30 L 580,30 L 590,24 L 600,30"></path>
+</svg>
+</div>
+</div>
+<!-- Attending Signature & Official Seal Stamp -->
+<div class="flex items-center justify-between pt-space-sm border-t border-surface-container-highest mt-2">
+<div class="flex flex-col">
+<span class="font-mono-data text-body-sm text-text-secondary">Digital Hash: 8f4a-29cc-0091b-ee781</span>
+<span class="font-label-sm text-label-sm text-health-green flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified_user</span> Cryptographically Signed by Health Gateway
+                  </span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm italic font-serif text-text-primary text-base leading-none">Rohan Wickramasinghe</span>
+<span class="font-label-sm text-label-sm text-text-secondary font-medium mt-1">Consultant Cardiologist</span>
+</div>
+<!-- Simulated Hospital Stamp -->
+<div class="w-16 h-16 rounded-full border-2 border-primary/40 flex items-center justify-center p-1 text-center rotate-[-12deg] text-primary">
+<span class="font-label-sm text-[8px] font-bold leading-tight uppercase">NAWALOKA HEART CTR • VERIFIED</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- BOTTOM ADMINISTRATIVE DESK: Verification Checklist & Notes -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface">Administrative Verification Checklist</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Registrar must affirm all 3 statutory integrity requirements prior to ledger publishing.</p>
+</div>
+<span class="px-space-sm py-1 rounded-full bg-health-green/15 text-health-green font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">task_alt</span> 3 / 3 Affirmations Complete
+            </span>
+</div>
+<!-- 3 Checked Items -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<label class="p-space-sm bg-surface-container-low rounded-lg flex items-start gap-space-sm cursor-pointer hover:bg-surface-container transition-colors">
+<input checked="" class="mt-1 w-4 h-4 rounded text-primary focus:ring-primary accent-primary cursor-pointer" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Legible &amp; Uncorrupted</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Artifact-free text and clear waveform calibration.</span>
+</div>
+</label>
+<label class="p-space-sm bg-surface-container-low rounded-lg flex items-start gap-space-sm cursor-pointer hover:bg-surface-container transition-colors">
+<input checked="" class="mt-1 w-4 h-4 rounded text-primary focus:ring-primary accent-primary cursor-pointer" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Date of Event Matches</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Header reads 2026-10-18 congruent with metadata.</span>
+</div>
+</label>
+<label class="p-space-sm bg-surface-container-low rounded-lg flex items-start gap-space-sm cursor-pointer hover:bg-surface-container transition-colors">
+<input checked="" class="mt-1 w-4 h-4 rounded text-primary focus:ring-primary accent-primary cursor-pointer" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Taxonomy Validated</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Classified under Consultation Note standard (SNOMED-CT).</span>
+</div>
+</label>
+</div>
+<!-- Reviewer Notes Input Box -->
+<div class="flex flex-col gap-1.5 mt-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md font-semibold text-on-surface" for="review-notes">
+                Reviewer Notes / Correction Instructions
+              </label>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Visible in Patient Notification Portal if actioned</span>
+</div>
+<textarea class="w-full bg-surface-container-low text-on-surface p-space-sm rounded-lg text-body-md font-body-md placeholder:text-on-surface-variant outline-none focus:bg-surface-container transition-all resize-none" id="review-notes" placeholder="Enter specific audit remarks, rationale, or patient clarification requests here..." rows="2"></textarea>
+</div>
+<!-- Action Disposition Bar: 3 Semantic High-Contrast Buttons -->
+<div class="pt-space-sm border-t border-surface-container-highest flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-md">
+<!-- Reject (Red) -->
+<button class="px-space-md py-2.5 rounded-lg bg-aid-red hover:bg-aid-red/90 text-clean-white font-label-md text-label-md font-semibold flex items-center justify-center gap-space-xs shadow-sm transition-transform active:scale-95" type="button">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+              Reject Submission
+            </button>
+<div class="flex items-stretch sm:items-center gap-space-md flex-col sm:flex-row">
+<!-- Request Correction (Surgical Blue) -->
+<button class="px-space-md py-2.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary-container font-label-md text-label-md font-semibold flex items-center justify-center gap-space-xs shadow-sm transition-transform active:scale-95" type="button">
+<span class="material-symbols-outlined text-[20px]">contact_support</span>
+                Request Correction from Patient
+              </button>
+<!-- Approve & Publish (Health Green) -->
+<button class="px-space-lg py-2.5 rounded-lg bg-health-green hover:bg-health-green/90 text-clean-white font-label-md text-label-md font-semibold flex items-center justify-center gap-space-xs shadow-md transition-transform active:scale-95" type="button">
+<span class="material-symbols-outlined text-[20px]">published_with_changes</span>
+                Approve &amp; Publish to Patient Timeline
+              </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Logic for Zoom / Queue Selection -->
+<script>
+    (function initRegistrarWorkspace() {
+      let currentZoom = 100;
+      const zoomLevelEl = document.getElementById('zoom-level');
+      const canvasEl = document.getElementById('document-canvas');
+      const zoomInBtn = document.getElementById('zoom-in');
+      const zoomOutBtn = document.getElementById('zoom-out');
+
+      if (zoomInBtn && zoomOutBtn && zoomLevelEl && canvasEl) {
+        zoomInBtn.addEventListener('click', () => {
+          if (currentZoom < 150) {
+            currentZoom += 10;
+            zoomLevelEl.textContent = currentZoom + '%';
+            canvasEl.style.transform = `scale(${currentZoom / 100})`;
+          }
+        });
+
+        zoomOutBtn.addEventListener('click', () => {
+          if (currentZoom > 70) {
+            currentZoom -= 10;
+            zoomLevelEl.textContent = currentZoom + '%';
+            canvasEl.style.transform = `scale(${currentZoom / 100})`;
+          }
+        });
+      }
+    })();
+  </script>
+</div></main></div></body></html>

@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}Physician Portal - {{ doctor.full_name }} | PHRMS{% endblock %}
+
+{% block content %}
+<div class="content-container">
+
+  <!-- Physician Header Banner -->
+  <div class="phrms-card" style="border-left: 5px solid var(--trust-teal); padding: 22px 28px; margin-bottom: 24px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <div style="width: 56px; height: 56px; border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--trust-teal), #005555); color: #fff; font-size: 22px; font-weight: 700; display: flex; align-items: center; justify-content: center;">
+          <span class="material-symbols-outlined" style="font-size: 30px;">stethoscope</span>
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <h1 style="font-size: 1.45rem; margin: 0; font-weight: 800;">{{ doctor.full_name }}</h1>
+            <span class="badge badge-approved">
+              <span class="material-symbols-outlined" style="font-size: 13px;">verified</span> Verified Clinician
+            </span>
+          </div>
+          <div style="display: flex; gap: 16px; margin-top: 4px; font-size: 13px; color: var(--text-secondary);">
+            <span><strong>Specialty:</strong> {{ doctor.specialization or 'Consultant Cardiologist' }}</span>
+            <span>•</span>
+            <span style="font-family: var(--font-mono);">{{ doctor.slmc_reg_no or 'SLMC #18420' }}</span>
+            <span>•</span>
+            <span>Accredited Clinical Gateway</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span class="badge" style="background-color: var(--trust-teal-tint); color: var(--trust-teal); font-size: 13px; padding: 6px 14px; font-weight: 700;">
+          {{ authorized_patients|length }} Active Consented Patients
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Security Protocol Notice -->
+  <div style="background-color: var(--clean-white); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px 18px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-secondary);">
+    <span class="material-symbols-outlined" style="color: var(--trust-teal); font-size: 22px;">shield</span>
+    <div>
+      <strong style="color: var(--text-primary);">Zero-Trace Sovereignty Protocol:</strong>
+      Physicians may only view clinical dossiers and consultation summaries for patients who have actively granted consent. Attempting to bypass authorization triggers an immutable audit alert.
+    </div>
+  </div>
+
+  <!-- Active Authorized Patients Grid (FR07) -->
+  <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 16px; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+    <span class="material-symbols-outlined" style="color: var(--trust-teal);">groups</span>
+    Delegated Patient Roster (Active Consents)
+  </h2>
+
+  {% if authorized_patients %}
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; margin-bottom: 36px;">
+    {% for patient in authorized_patients %}
+    {% set grant = grant_map.get(patient.id) %}
+    <div class="phrms-card" style="border-top: 4px solid var(--trust-teal); display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 0;">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-full); background: linear-gradient(135deg, var(--surgical-blue), var(--trust-teal)); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700;">
+              {{ patient.full_name[:2].upper() }}
+            </div>
+            <div>
+              <strong style="font-size: 1.05rem; display: block; color: var(--text-primary);">{{ patient.full_name }}</strong>
+              <span style="font-size: 12px; font-family: var(--font-mono); color: var(--text-secondary);">
+                NIC: {{ patient.national_id or '199182302481' }}
+              </span>
+            </div>
+          </div>
+          <span class="badge badge-approved" style="font-size: 11px;">Consented</span>
+        </div>
+
+        <div style="background-color: var(--surface-low); padding: 10px 14px; border-radius: var(--radius-md); font-size: 12.5px; margin-bottom: 14px; border: 1px solid var(--border-color);">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+            <span style="color: var(--text-secondary);">Blood Group:</span>
+            <strong style="color: var(--aid-red);">{{ patient.blood_group or 'O+' }}</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+            <span style="color: var(--text-secondary);">Scope:</span>
+            <strong style="color: var(--text-primary);">{{ grant.access_notes if grant else 'Cardiology Review' }}</strong>
+          </div>
+          {% if patient.known_allergies %}
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: var(--aid-red); font-weight: 600;">Allergies:</span>
+            <strong style="color: var(--aid-red);">{{ patient.known_allergies }}</strong>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <a href="{{ url_for('doctor.patient_view', patient_id=patient.id) }}" class="btn btn-teal" style="width: 100%;">
+        <span class="material-symbols-outlined">folder_shared</span> Open Clinical Dossier &rarr;
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="phrms-card" style="text-align: center; padding: 40px 20px;">
+    <span class="material-symbols-outlined" style="font-size: 40px; color: var(--cool-gray);">lock_person</span>
+    <h3 style="margin: 10px 0 6px;">No Active Consented Patients</h3>
+    <p style="color: var(--text-secondary); max-width: 440px; margin: 0 auto;">
+      No patient has currently delegated clinical access to your physician account. Use the demo role switcher to log in as a patient and grant access.
+    </p>
+  </div>
+  {% endif %}
+
+  <!-- Academic Demonstration Security Check: Unauthorized Patients Section -->
+  <div class="phrms-card" style="background-color: var(--surface-low); margin-top: 16px;">
+    <div class="card-header-flex">
+      <div>
+        <h3 style="margin: 0; font-size: 1.1rem; color: var(--text-primary);">RBAC Gate Evaluation: Unauthorized Patients</h3>
+        <p class="card-header-subtitle">
+          Test the authorization gate (FR07 / NFR03). Attempting to open an unauthorized dossier triggers an HTTP 403 Forbidden.
+        </p>
+      </div>
+      <span class="badge badge-category" style="color: var(--aid-red); border-color: #ffcdd2;">Security Test Gate</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      {% for p in all_patients %}
+      {% if p not in authorized_patients %}
+      <div style="padding: 10px 14px; background: var(--clean-white); border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <strong style="font-size: 13.5px;">{{ p.full_name }}</strong>
+          <span style="font-size: 12px; color: var(--text-secondary); margin-left: 8px;">(Consent Not Granted to Dr. Bandara)</span>
+        </div>
+        <a href="{{ url_for('doctor.patient_view', patient_id=p.id) }}" class="btn btn-outline btn-sm" style="color: var(--aid-red);">
+          <span class="material-symbols-outlined" style="font-size: 15px;">lock</span> Test Unauthorized Access
+        </a>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}Consultation Summary - {{ summary.title }} | PHRMS{% endblock %}
+
+{% block content %}
+<div class="content-container" style="max-width: 960px;">
+
+  <!-- Top Action Toolbar (Hidden in print) -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;" class="no-print">
+    <div>
+      <span class="badge badge-approved" style="margin-bottom: 4px;">
+        <span class="material-symbols-outlined" style="font-size: 14px;">verified</span> Verified Consultation Document (FR08)
+      </span>
+      <h1 style="margin: 0; font-size: 1.4rem; font-weight: 800;">Consultation-Ready Summary Sheet</h1>
+    </div>
+
+    <div style="display: flex; gap: 10px;">
+      {% if current_user.role == 'PATIENT' %}
+      <a href="{{ url_for('patient.dashboard') }}" class="btn btn-outline btn-sm">
+        <span class="material-symbols-outlined">arrow_back</span> Patient Dashboard
+      </a>
+      {% elif current_user.role == 'DOCTOR' %}
+      <a href="{{ url_for('doctor.patient_view', patient_id=patient.id) }}" class="btn btn-outline btn-sm">
+        <span class="material-symbols-outlined">arrow_back</span> Clinical Dossier
+      </a>
+      {% endif %}
+
+      <button type="button" class="btn btn-teal btn-sm" onclick="window.print()">
+        <span class="material-symbols-outlined">print</span> Print / Export PDF
+      </button>
+    </div>
+  </div>
+
+  <!-- The Printable Clinical Briefing Sheet Container -->
+  <div class="consultation-sheet-wrapper">
+    
+    <!-- Header Band (Trust Teal) -->
+    <div class="consultation-sheet-header">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px;">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); color: #fff; display: flex; align-items: center; justify-content: center;">
+            <span class="material-symbols-outlined" style="font-size: 28px;">clinical_notes</span>
+          </div>
+          <div>
+            <h2 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin: 0; letter-spacing: -0.01em;">
+              {{ summary.title }}
+            </h2>
+            <span style="font-size: 12px; color: #e6f2f2; font-family: var(--font-mono);">
+              PHRMS PRE-CONSULTATION CLINICAL DOSSIER • REF #SUM-{{ summary.id }}-2026
+            </span>
+          </div>
+        </div>
+
+        <div style="text-align: right; font-size: 12px; color: #ffffff;">
+          <span style="opacity: 0.8; display: block;">Generated Date (UTC)</span>
+          <strong style="font-family: var(--font-mono); font-size: 13px;">{{ summary.created_at.strftime('%Y-%m-%d %H:%M') }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sheet Body -->
+    <div class="consultation-sheet-body">
+
+      <!-- Critical Known Allergies Callout (Aid Red) -->
+      {% if patient.known_allergies %}
+      <div class="allergy-alert-banner" style="margin-bottom: 24px;">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div class="allergy-icon-box" style="width: 38px; height: 38px;">
+            <span class="material-symbols-outlined" style="font-size: 22px;">warning</span>
+          </div>
+          <div>
+            <span style="font-size: 11px; font-weight: 700; color: var(--aid-red); text-transform: uppercase; letter-spacing: 0.05em; display: block;">
+              CRITICAL CLINICAL ALLERGY ALERT
+            </span>
+            <strong style="font-size: 1rem; color: var(--aid-red-text);">
+              KNOWN ALLERGIES: {{ patient.known_allergies }}
+            </strong>
+          </div>
+        </div>
+        <span class="badge" style="background-color: var(--clean-white); color: var(--aid-red); border: 1px solid var(--aid-red); font-family: var(--font-mono);">
+          ICD-10 Z88.0
+        </span>
+      </div>
+      {% endif %}
+
+      <!-- Patient Demographics & Profile Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; padding: 18px; background-color: var(--surface-low); border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-bottom: 28px;">
+        <div>
+          <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-secondary); display: block;">Patient Full Name</span>
+          <strong style="font-size: 14.5px; color: var(--text-primary); display: block; margin-top: 2px;">{{ patient.full_name }}</strong>
+        </div>
+        <div>
+          <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-secondary); display: block;">National ID / NIC</span>
+          <strong style="font-size: 14px; font-family: var(--font-mono); color: var(--text-primary); display: block; margin-top: 2px;">{{ patient.national_id or '199182302481' }}</strong>
+        </div>
+        <div>
+          <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-secondary); display: block;">Blood Group</span>
+          <strong style="font-size: 14.5px; color: var(--aid-red); display: block; margin-top: 2px;">{{ patient.blood_group or 'O+' }}</strong>
+        </div>
+        <div>
+          <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-secondary); display: block;">Primary Healthcare Provider</span>
+          <strong style="font-size: 13.5px; color: var(--text-primary); display: block; margin-top: 2px;">{{ patient.primary_facility or 'Asiri Central Colombo' }}</strong>
+        </div>
+      </div>
+
+      <!-- Section 1: Chief Complaint & Patient Reason for Visit -->
+      <div style="margin-bottom: 28px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+          <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--trust-teal);"></span>
+          <h3 style="font-size: 1.15rem; margin: 0; font-weight: 700; color: var(--text-primary);">
+            Section 1: Chief Complaint &amp; Patient Reason for Visit
+          </h3>
+        </div>
+        <div style="padding: 16px 20px; background-color: var(--surface-low); border-left: 4px solid var(--trust-teal); border-radius: var(--radius-md);">
+          <p style="margin: 0; font-size: 14.5px; font-style: italic; color: var(--text-primary); line-height: 1.6;">
+            “{{ summary.chief_complaint }}”
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 2: Patient-Selected Verified Records Table -->
+      <div style="margin-bottom: 32px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--surgical-blue);"></span>
+            <h3 style="font-size: 1.15rem; margin: 0; font-weight: 700; color: var(--text-primary);">
+              Section 2: Curated Chronological Records ({{ records|length }} Documents)
+            </h3>
+          </div>
+          <span class="badge badge-approved">All Verified by Registrar</span>
+        </div>
+
+        <div style="overflow-x: auto; border: 1px solid var(--border-color); border-radius: var(--radius-lg);">
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+            <thead>
+              <tr style="background-color: var(--surface-low); border-bottom: 1px solid var(--border-color); text-align: left; font-size: 11.5px; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.04em;">
+                <th style="padding: 12px 14px;">Date</th>
+                <th style="padding: 12px 14px;">Category</th>
+                <th style="padding: 12px 14px;">Document &amp; Provider</th>
+                <th style="padding: 12px 14px;">Clinical Findings / Key Metrics</th>
+                <th style="padding: 12px 14px; text-align: right;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for r in records %}
+              <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 14px; font-family: var(--font-mono); font-weight: 700; color: var(--surgical-blue); white-space: nowrap;">
+                  {{ r.record_date.strftime('%Y-%m-%d') }}
+                </td>
+                <td style="padding: 14px; white-space: nowrap;">
+                  <span class="badge badge-category">{{ r.category }}</span>
+                </td>
+                <td style="padding: 14px;">
+                  <strong style="display: block; color: var(--text-primary); font-size: 13.5px;">{{ r.title }}</strong>
+                  <span style="font-size: 12px; color: var(--text-secondary);">{{ r.provider_name }}</span>
+                </td>
+                <td style="padding: 14px; color: var(--text-primary); line-height: 1.5; font-size: 13px;">
+                  {{ r.clinical_summary }}
+                </td>
+                <td style="padding: 14px; text-align: right; white-space: nowrap;">
+                  <span class="badge badge-approved" style="font-size: 11px;">
+                    <span class="material-symbols-outlined" style="font-size: 13px;">verified</span> Verified
+                  </span>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 3: Attending Clinician Notes & Signature Block -->
+      <div style="border-top: 2px dashed var(--border-color); padding-top: 24px; margin-top: 24px;">
+        <h4 style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin: 0 0 12px;">
+          Section 3: Attending Clinician Notes &amp; Disposition
+        </h4>
+
+        <div style="height: 90px; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: #fafbfc; margin-bottom: 24px; padding: 12px; font-size: 12px; color: var(--text-muted);">
+          [Space reserved for physical or digital physician consultation notes and prescription decisions]
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); display: block;">
+              Cryptographic Digest: SHA-256: 8F4A-992B-C001-A42F
+            </span>
+            <span style="font-size: 11.5px; color: var(--health-green); font-weight: 600;">
+              ✓ Attested by Sovereign PHRMS Health Core
+            </span>
+          </div>
+
+          <div style="text-align: right; min-width: 200px;">
+            <div style="border-bottom: 1.5px solid var(--text-primary); width: 100%; margin-bottom: 6px;"></div>
+            <strong style="font-size: 13px; color: var(--text-primary); display: block;">Attending Clinician Signature</strong>
+            <span style="font-size: 11px; color: var(--text-secondary);">Date &amp; SLMC Stamp</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}

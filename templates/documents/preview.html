@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}Medical Document - {{ record.title }} | PHRMS{% endblock %}
+
+{% block content %}
+<div class="content-container" style="max-width: 900px;">
+
+  <!-- Viewport Toolbar -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;" class="no-print">
+    <div>
+      <span class="badge badge-category" style="margin-bottom: 4px;">{{ record.category }}</span>
+      <h1 style="margin: 0; font-size: 1.35rem; font-weight: 800;">{{ record.title }}</h1>
+    </div>
+
+    <div style="display: flex; gap: 10px; align-items: center;">
+      <button type="button" class="btn btn-outline btn-sm" id="zoom-out">
+        <span class="material-symbols-outlined">zoom_out</span>
+      </button>
+      <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 600;" id="zoom-level">100%</span>
+      <button type="button" class="btn btn-outline btn-sm" id="zoom-in">
+        <span class="material-symbols-outlined">zoom_in</span>
+      </button>
+      <button type="button" class="btn btn-outline btn-sm" id="rotate-btn">
+        <span class="material-symbols-outlined">rotate_right</span>
+      </button>
+      <button type="button" class="btn btn-teal btn-sm" onclick="window.print()">
+        <span class="material-symbols-outlined">print</span> Print
+      </button>
+    </div>
+  </div>
+
+  <!-- Document Viewport -->
+  <div class="inspection-viewport" style="border-radius: var(--radius-xl);">
+    <div class="document-sheet-mock" id="document-canvas" style="transition: transform 0.2s ease; transform-origin: top center;">
+      
+      <!-- Hospital Letterhead -->
+      <div class="hospital-letterhead">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background-color: var(--surgical-blue); color: #fff; font-size: 20px; font-weight: 800; display: flex; align-items: center; justify-content: center;">
+            {{ record.provider_name[:3].upper() }}
+          </div>
+          <div>
+            <h2 style="font-size: 1.25rem; margin: 0; text-transform: uppercase;">{{ record.provider_name }}</h2>
+            <span style="font-size: 12px; color: var(--text-secondary); display: block;">
+              Accredited Clinical Diagnostics Facility • Colombo, Sri Lanka
+            </span>
+          </div>
+        </div>
+        <div style="text-align: right;">
+          <span class="badge badge-rejected" style="font-size: 10px; font-weight: 800;">CONFIDENTIAL HEALTH RECORD</span>
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); display: block; margin-top: 4px;">
+            REF: DOC-{{ record.id }}-2026
+          </span>
+        </div>
+      </div>
+
+      <!-- Patient & Visit Meta Block -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 12px 16px; background-color: var(--surface-low); border-radius: var(--radius-md); margin-bottom: 22px; font-size: 13px;">
+        <div>
+          <span style="color: var(--text-secondary); display: block; font-size: 11px; font-weight: 700; text-transform: uppercase;">PATIENT IDENTIFICATION</span>
+          <strong>{{ patient.full_name }}</strong> (DOB: {{ patient.date_of_birth or '1991-11-12' }})
+          <span style="display: block; font-size: 11.5px; color: var(--text-secondary); font-family: var(--font-mono);">NIC: {{ patient.national_id or '199182302481' }}</span>
+        </div>
+        <div style="text-align: right;">
+          <span style="color: var(--text-secondary); display: block; font-size: 11px; font-weight: 700; text-transform: uppercase;">RECORD DATE</span>
+          <strong style="font-family: var(--font-mono); font-size: 14px; color: var(--surgical-blue);">{{ record.record_date.strftime('%d-%b-%Y') }}</strong>
+          <span style="display: block; font-size: 11.5px; color: var(--text-secondary);">Category: {{ record.category }}</span>
+        </div>
+      </div>
+
+      <!-- Clinical Findings Block -->
+      <div style="margin-bottom: 22px;">
+        <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); display: block; margin-bottom: 6px;">
+          Clinical Findings &amp; Summary
+        </span>
+        <div style="padding: 14px 18px; background-color: #fafbfc; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 14px; line-height: 1.6; color: var(--text-primary);">
+          {{ record.clinical_summary }}
+        </div>
+      </div>
+
+      <!-- Category Specific Rendering -->
+      {% if 'ECG' in record.title or 'Cardiology' in record.title or 'Heart' in record.provider_name %}
+      <div style="margin-bottom: 24px; padding: 14px; background-color: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+        <div style="display: flex; justify-content: space-between; font-size: 11px; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 8px;">
+          <span>CALIBRATION: 25mm/s • 10mm/mV</span>
+          <span style="color: var(--health-green); font-weight: 600;">SINUS RHYTHM PRESERVED</span>
+        </div>
+        <svg style="width: 100%; height: 60px; color: var(--aid-red);" viewBox="0 0 600 50" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" preserveAspectRatio="none">
+          <path d="M 0,25 L 40,25 L 45,23 L 50,27 L 55,25 L 80,25 L 85,21 L 90,25 L 100,25 L 105,28 L 110,4 L 115,46 L 120,25 L 130,25 L 140,20 L 150,25 L 190,25 L 195,23 L 200,27 L 205,25 L 230,25 L 235,21 L 240,25 L 250,25 L 255,28 L 260,4 L 265,46 L 270,25 L 280,25 L 290,20 L 300,25 L 340,25 L 345,23 L 350,27 L 355,25 L 380,25 L 385,21 L 390,25 L 400,25 L 405,28 L 410,4 L 415,46 L 420,25 L 430,25 L 440,20 L 450,25 L 490,25 L 495,23 L 500,27 L 505,25 L 530,25 L 535,21 L 540,25 L 550,25 L 555,28 L 560,4 L 565,46 L 570,25 L 580,25 L 590,20 L 600,25"></path>
+        </svg>
+      </div>
+      {% endif %}
+
+      <!-- Signature & Seal -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 18px; font-size: 12px;">
+        <div>
+          <span style="font-family: var(--font-mono); color: var(--text-muted); display: block;">SHA256: 8f4a-29cc-0091b-ee781</span>
+          <span style="color: var(--health-green); font-weight: 600;">✓ Verified &amp; Stamped by PHRMS Gateway</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="text-align: right;">
+            <strong style="display: block; font-family: serif; font-size: 14px;">Dr. Susantha Jayasuriya</strong>
+            <span style="color: var(--text-secondary); font-size: 11px;">Authorizing Medical Specialist</span>
+          </div>
+          <div style="width: 58px; height: 58px; border: 2px dashed var(--surgical-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; transform: rotate(-12deg); color: var(--surgical-blue); font-size: 8px; font-weight: 800; text-align: center; padding: 4px;">
+            CLINICAL CERTIFIED
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}

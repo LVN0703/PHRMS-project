@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}PHRMS - Sovereign Personal Health Record & Sharing Platform{% endblock %}
+
+{% block content %}
+<div class="content-container">
+  <!-- System Telemetry Strip -->
+  <div style="background-color: var(--clean-white); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 10px 18px; margin-bottom: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; box-shadow: var(--shadow-xs);">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background-color: var(--health-green); box-shadow: 0 0 6px var(--health-green);"></span>
+      <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--text-primary);">
+        PROTOTYPE ENVIRONMENT: LOCAL HOST ACTIVE
+      </span>
+      <span style="color: var(--cool-gray);">|</span>
+      <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary);">
+        ACADEMIC CAPSTONE (MIS 4500)
+      </span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 14px; font-family: var(--font-mono); font-size: 12px;">
+      <span style="color: var(--trust-teal); font-weight: 600;">
+        <span class="material-symbols-outlined" style="font-size: 15px;">verified_user</span> ROLE-BASED ACCESS CONTROL (RBAC)
+      </span>
+      <span style="background: var(--surface-low); padding: 3px 8px; border-radius: var(--radius-sm); color: var(--text-secondary); border: 1px solid var(--border-color);">
+        LATENCY: &lt;15ms
+      </span>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <div style="background: linear-gradient(135deg, #ffffff 0%, #f1f7fa 100%); border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: 48px 40px; margin-bottom: 32px; box-shadow: var(--shadow-sm); position: relative; overflow: hidden;">
+    <div style="max-width: 820px; position: relative; z-index: 2;">
+      <div style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background-color: var(--surgical-blue-tint); color: var(--surgical-blue); border-radius: var(--radius-full); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;">
+        <span class="material-symbols-outlined" style="font-size: 16px;">shield</span>
+        Personal Health Record Management & Sharing System
+      </div>
+      <h1 style="font-size: 2.4rem; font-weight: 800; color: var(--text-primary); line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.02em;">
+        Sovereign Patient Health Records with Administrative Verification & Physician Sharing
+      </h1>
+      <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 28px;">
+        A comprehensive academic web application integrating patient document uploads, administrative review and triage, chronological health record management, and granular patient-controlled doctor access.
+      </p>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center;">
+        <a href="{{ url_for('auth.login') }}" class="btn btn-surgical btn-lg">
+          <span class="material-symbols-outlined">login</span> Enter Clinical Workspace
+        </a>
+        <a href="{{ url_for('auth.demo_switch', role='patient') }}" class="btn btn-outline btn-lg">
+          <span class="material-symbols-outlined">person</span> Launch as Patient (Amara)
+        </a>
+        <a href="{{ url_for('auth.demo_switch', role='reviewer') }}" class="btn btn-outline btn-lg">
+          <span class="material-symbols-outlined">fact_check</span> Launch as Registrar (Malini)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Three Core Stakeholder Portals -->
+  <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 18px; color: var(--text-primary);">
+    Three-Role Integrated Workflow Architecture
+  </h2>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 36px;">
+    <!-- Portal 1: Patient -->
+    <div class="phrms-card" style="border-top: 4px solid var(--surgical-blue);">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+        <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background-color: var(--surgical-blue-tint); color: var(--surgical-blue); display: flex; align-items: center; justify-content: center;">
+          <span class="material-symbols-outlined" style="font-size: 24px;">person</span>
+        </div>
+        <div>
+          <h3 style="font-size: 1.15rem; margin: 0;">Patient Portal</h3>
+          <span style="font-size: 12px; color: var(--text-secondary);">Full Data Sovereignty</span>
+        </div>
+      </div>
+      <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+        Upload medical records, monitor submission status in real-time, view verified chronological health timeline, build appointment consultation packets, and grant or revoke physician permissions.
+      </p>
+      <a href="{{ url_for('auth.demo_switch', role='patient') }}" class="btn btn-surgical btn-sm" style="width: 100%;">
+        Open Patient Workspace &rarr;
+      </a>
+    </div>
+
+    <!-- Portal 2: Reviewer -->
+    <div class="phrms-card" style="border-top: 4px solid var(--trust-teal);">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+        <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background-color: var(--trust-teal-tint); color: var(--trust-teal); display: flex; align-items: center; justify-content: center;">
+          <span class="material-symbols-outlined" style="font-size: 24px;">fact_check</span>
+        </div>
+        <div>
+          <h3 style="font-size: 1.15rem; margin: 0;">Document Review Workspace</h3>
+          <span style="font-size: 12px; color: var(--text-secondary);">Administrative Quality Control</span>
+        </div>
+      </div>
+      <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+        Inspect patient uploads against claimed metadata, verify hospital stamps, confirm dates and legibility, and execute atomic triage actions: Approve, Request Correction, or Reject.
+      </p>
+      <a href="{{ url_for('auth.demo_switch', role='reviewer') }}" class="btn btn-teal btn-sm" style="width: 100%;">
+        Open Reviewer Queue &rarr;
+      </a>
+    </div>
+
+    <!-- Portal 3: Doctor -->
+    <div class="phrms-card" style="border-top: 4px solid var(--health-green);">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+        <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background-color: var(--health-green-tint); color: var(--health-green); display: flex; align-items: center; justify-content: center;">
+          <span class="material-symbols-outlined" style="font-size: 24px;">stethoscope</span>
+        </div>
+        <div>
+          <h3 style="font-size: 1.15rem; margin: 0;">Physician Clinical Portal</h3>
+          <span style="font-size: 12px; color: var(--text-secondary);">Consent-Gated Clinical Dossiers</span>
+        </div>
+      </div>
+      <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">
+        Access only authorized patient dossiers, review critical allergy alerts prior to consultation, inspect verified chronological history, and review or print patient-curated briefing sheets in under 60 seconds.
+      </p>
+      <a href="{{ url_for('auth.demo_switch', role='doctor') }}" class="btn btn-green btn-sm" style="width: 100%;">
+        Open Physician Portal &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- Capstone Academic Project Overview Card -->
+  <div class="phrms-card" style="background-color: var(--surface-low);">
+    <div class="card-header-flex">
+      <div class="card-header-title">
+        <span class="material-symbols-outlined" style="color: var(--surgical-blue);">school</span>
+        <div>
+          <h3 style="margin: 0;">Academic Capstone Specifications (MIS 4500)</h3>
+          <p class="card-header-subtitle">Verified against Project Proposal &amp; Technical Requirements Document (TRD)</p>
+        </div>
+      </div>
+      <span class="badge badge-approved">
+        <span class="material-symbols-outlined" style="font-size: 14px;">check</span> FR01 - FR09 Ready
+      </span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; font-size: 13.5px;">
+      <div style="padding: 12px; background: var(--clean-white); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+        <strong style="color: var(--text-primary); display: block; margin-bottom: 4px;">Zero-Trace Portability</strong>
+        Runs out-of-the-box locally with SQLite (`phrms.db`), 100% MySQL compatible via single configuration switch.
+      </div>
+      <div style="padding: 12px; background: var(--clean-white); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+        <strong style="color: var(--text-primary); display: block; margin-bottom: 4px;">Role-Based Security Gate</strong>
+        Every endpoint guarded by strict session RBAC. Doctor access to unauthorized patient returns HTTP 403 and logs violation.
+      </div>
+      <div style="padding: 12px; background: var(--clean-white); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+        <strong style="color: var(--text-primary); display: block; margin-bottom: 4px;">Medical Color Design System</strong>
+        Unified `phrms-common.css` codifying Surgical Blue, Trust Teal, Health Green, Aid Red, Clean White, and Cool Gray.
+      </div>
+      <div style="padding: 12px; background: var(--clean-white); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+        <strong style="color: var(--text-primary); display: block; margin-bottom: 4px;">Immutable Audit Ledger</strong>
+        Tracks every submission, review decision, access grant, revocation, and doctor dossier inspection.
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

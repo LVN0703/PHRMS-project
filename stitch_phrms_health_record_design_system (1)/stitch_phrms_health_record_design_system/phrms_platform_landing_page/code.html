@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_blank" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error-container": "#93000a", "inverse-surface": "#2d3134", "on-error": "#ffffff", "surface-tint": "#00658b", "secondary": "#006a6a", "clean-white": "#FFFFFF", "on-secondary": "#ffffff", "on-primary-fixed-variant": "#004c69", "primary-fixed": "#c4e7ff", "surface-container-low": "#f1f4f8", "background": "#f7fafd", "secondary-fixed": "#93f2f2", "on-background": "#181c1f", "surface-container-highest": "#e0e3e7", "primary-fixed-dim": "#7cd0ff", "primary-container": "#007ba7", "error": "#ba1a1a", "tertiary": "#834d00", "cool-gray": "#A9B0B3", "on-tertiary-fixed": "#2c1600", "inverse-primary": "#7cd0ff", "surface-container-lowest": "#ffffff", "primary": "#006184", "inverse-on-surface": "#eef1f5", "app-bg": "#F4F7F8", "on-secondary-fixed-variant": "#004f4f", "surface-bright": "#f7fafd", "on-surface-variant": "#3f484e", "on-tertiary-fixed-variant": "#683c00", "outline-variant": "#bfc8cf", "text-secondary": "#5A6570", "surface-variant": "#e0e3e7", "surface-dim": "#d7dade", "secondary-container": "#90efef", "health-green": "#4CAF50", "surface-container-high": "#e5e8ec", "error-container": "#ffdad6", "on-surface": "#181c1f", "on-secondary-container": "#006e6e", "text-primary": "#1E293B", "aid-red": "#D62828", "on-primary-fixed": "#001e2c", "outline": "#6f787f", "surface": "#f7fafd", "on-primary-container": "#f5faff", "tertiary-container": "#a36410", "secondary-fixed-dim": "#76d6d5", "on-tertiary": "#ffffff", "tertiary-fixed": "#ffdcbc", "on-secondary-fixed": "#002020", "surface-container": "#ebeef2", "tertiary-fixed-dim": "#ffb86c", "on-tertiary-container": "#fff8f4", "on-primary": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "16px", "gutter": "24px", "space-xl": "32px", "space-xs": "4px", "space-lg": "24px", "space-sm": "8px", "margin": "32px" }, "fontFamily": { "headline-lg": [ "Inter" ], "label-md": [ "Plus Jakarta Sans" ], "body-lg": [ "Inter" ], "label-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Inter" ], "headline-md": [ "Inter" ], "body-sm": [ "Inter" ], "mono-data": [ "JetBrains Mono" ], "headline-sm": [ "Inter" ] }, "fontSize": { "headline-lg": [ "32px", { "lineHeight": "40px", "fontWeight": "600" } ], "label-md": [ "14px", { "lineHeight": "20px", "fontWeight": "500" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "label-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "500" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-md": [ "24px", { "lineHeight": "32px", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "mono-data": [ "13px", { "lineHeight": "18px", "fontWeight": "400" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "fontWeight": "600" } ] } } } }</script></head><body class="bg-background font-body-md text-body-md text-on-surface"><main class="w-full min-h-screen bg-background flex flex-col justify-center items-center p-space-lg"><div class="flex flex-col w-full">
+<!-- Subtle decorative ambient background glows (contained) -->
+<div class="relative w-full max-w-7xl mx-auto px-gutter py-space-xl overflow-hidden">
+<div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[360px] bg-secondary-fixed/30 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="absolute top-96 right-0 w-[420px] h-[420px] bg-primary-fixed/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<!-- Live System Telemetry Strip -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-low px-space-md py-space-sm rounded-lg mb-space-lg shadow-sm">
+<div class="flex items-center gap-space-sm">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-health-green opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-health-green"></span>
+</span>
+<span class="font-mono-data text-mono-data text-on-surface">FHIR v4.0.1 ENDPOINTS: OPERATIONAL</span>
+<span class="text-cool-gray">/</span>
+<span class="font-mono-data text-mono-data text-text-secondary">ZERO-KNOWLEDGE ATTESTATION ACTIVE</span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs font-mono-data text-mono-data text-primary">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+<span>ISO 27001 &amp; HIPAA VERIFIED</span>
+</div>
+<div class="font-mono-data text-mono-data bg-surface-container-high px-space-sm py-0.5 rounded text-on-surface-variant">
+          LATENCY: 14ms
+        </div>
+</div>
+</div>
+<!-- Hero Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center pt-space-md pb-space-xl">
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="inline-flex items-center gap-space-xs self-start bg-secondary/10 text-secondary px-space-sm py-1 rounded-full font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">security</span>
+          FEDERATED PERSONAL HEALTH RECORD ARCHITECTURE
+        </div>
+<h1 class="font-headline-lg text-headline-lg text-text-primary tracking-tight">
+          Unified Health Records with Sovereign Patient Stewardship &amp; Double-Blind Clinical Triage
+        </h1>
+<p class="font-body-lg text-body-lg text-text-secondary max-w-2xl">
+          A high-trust clinical data ecosystem connecting patients, licensed specialists, operational reviewers, and state healthcare registries. Total cryptographic data ownership meets instantaneous zero-knowledge clinical clearance.
+        </p>
+<!-- CTA Cluster -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-sm">
+<a class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md px-space-md py-space-sm rounded-lg shadow-sm transition-all" href="#demo-access">
+<span class="material-symbols-outlined text-[20px]">login</span>
+            Access Health Portal (Sign In)
+          </a>
+<button class="flex items-center gap-space-xs bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md px-space-md py-space-sm rounded-lg transition-all" onclick="document.getElementById('role-navigator').scrollIntoView({behavior:'smooth'})">
+<span class="material-symbols-outlined text-[20px]">science</span>
+            Explore Academic Sandbox
+          </button>
+<button class="flex items-center gap-space-xs bg-secondary-fixed/40 hover:bg-secondary-fixed text-on-secondary-fixed-variant font-label-md text-label-md px-space-md py-space-sm rounded-lg transition-all" onclick="document.getElementById('institutional-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[20px]">corporate_fare</span>
+            Institutional Facility Onboarding
+          </button>
+</div>
+<!-- Metrics Ticker -->
+<div class="grid grid-cols-3 gap-space-md pt-space-lg">
+<div class="bg-surface-container-low p-space-sm rounded-lg">
+<div class="font-mono-data text-mono-data text-text-secondary uppercase">Median Triage SLA</div>
+<div class="font-headline-md text-headline-md text-primary">&lt; 38 min</div>
+<div class="font-body-sm text-body-sm text-health-green font-medium">99.8% on-schedule</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg">
+<div class="font-mono-data text-mono-data text-text-secondary uppercase">Consent Integrity</div>
+<div class="font-headline-md text-headline-md text-secondary">100%</div>
+<div class="font-body-sm text-body-sm text-text-secondary">Zero-Knowledge ZK-SNARK</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg">
+<div class="font-mono-data text-mono-data text-text-secondary uppercase">Audit Trail</div>
+<div class="font-headline-md text-headline-md text-text-primary">SHA-256</div>
+<div class="font-body-sm text-body-sm text-text-secondary">Tamper-evident log chain</div>
+</div>
+</div>
+</div>
+<!-- Hero Visual: Cryptographic Verification Core -->
+<div class="lg:col-span-5 relative">
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-xl flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">health_metrics</span>
+<span class="font-label-md text-label-md text-text-primary font-semibold">Active Consent Node: Colombo Central</span>
+</div>
+<span class="font-mono-data text-mono-data px-2 py-0.5 bg-secondary-fixed/50 text-on-secondary-fixed-variant rounded-full">LIVE-SYNC</span>
+</div>
+<!-- Hero Realistic Image Context -->
+<div class="relative w-full h-44 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, bright modern clinical diagnostics command room with specialized doctors and data analysts reviewing high-resolution dual-screen patient telemetry, medical scans, and cryptographic health records in soft surgical blue and cool clinical white lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASTnK1TUzqSTc-KmZaGrWlaQzwsqQjezdINcHzicmQEMhZdAqtVc1BPdpOIDFNc4yPRSoIwFxKzLTNpq07oZSIHEVVkFN3QiCAHsxo4CVaYqnriZRK7bFIZW4bqajIjjPusr_VDLFeVIZgGTF3s44f6vmZEkcG2V1cAOAxLT3L74ruvvnQ7p17WXbA3NqPy-ulIXx7Rj9CNuMHxYjRqPnceVe6__E4_iCyPe91dl_sIwdyrdOlC9mT"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-transparent flex items-end p-space-sm">
+<div class="text-on-secondary font-mono-data text-mono-data">
+                ENCRYPTED RECORD REF: #PHR-LK-8921-2025
+              </div>
+</div>
+</div>
+<!-- Live Mock Inspection Card -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-space-xs">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-text-secondary">Patient Sovereignty State</span>
+<span class="text-health-green font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                Token Authorized (1h 14m remaining)
+              </span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-4/5 rounded-full"></div>
+</div>
+<div class="flex items-center justify-between font-mono-data text-mono-data text-text-secondary pt-1">
+<span>Granular Scope: [Lab_BioChem, Allergies]</span>
+<span>Revocable instantly</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs text-body-sm font-body-sm">
+<div class="flex items-center gap-space-xs text-text-secondary">
+<span class="material-symbols-outlined text-aid-red text-[16px]">priority_high</span>
+<span>Penicillin anaphylaxis flagged</span>
+</div>
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded-full font-label-sm text-label-sm font-semibold">Triage Grade A</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Core Pillars Grid -->
+<div class="pt-space-lg pb-space-xl">
+<div class="flex flex-col gap-space-xs mb-space-lg text-center items-center">
+<span class="font-mono-data text-mono-data text-secondary uppercase tracking-wider">Built for High-Stakes Clinical Governance</span>
+<h2 class="font-headline-lg text-headline-lg text-text-primary">Clinical Infrastructure Highlights</h2>
+<p class="font-body-md text-body-md text-text-secondary max-w-2xl">Engineered under national health data interoperability directives with uncompromising security protocols.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Feature 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-sm hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center text-primary mb-space-xs">
+<span class="material-symbols-outlined text-[28px]">hub</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary">FHIR HL7 v4 Compliance</h3>
+<p class="font-body-md text-body-md text-text-secondary">Native interoperability with hospital HIS, external diagnostic labs, and international federated health registers with zero transformation lag.</p>
+<div class="mt-auto pt-space-sm font-mono-data text-mono-data text-primary">RFC-7231 / REST-JSON</div>
+</div>
+<!-- Feature 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-sm hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary mb-space-xs">
+<span class="material-symbols-outlined text-[28px]">key</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary">Zero-Knowledge Consent</h3>
+<p class="font-body-md text-body-md text-text-secondary">Patients govern time-bounded decryption keys. Specialists only view what the patient explicitly permits, revocable at any millisecond.</p>
+<div class="mt-auto pt-space-sm font-mono-data text-mono-data text-secondary">Curve25519 Ephemeral E2EE</div>
+</div>
+<!-- Feature 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-sm hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-text-primary mb-space-xs">
+<span class="material-symbols-outlined text-[28px]">verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary">Cryptographic Validation</h3>
+<p class="font-body-md text-body-md text-text-secondary">Every biopsy, clinical note, and lab panel is signed with registrar hardware certificates to eliminate counterfeit documentation.</p>
+<div class="mt-auto pt-space-sm font-mono-data text-mono-data text-text-primary">X.509 PKI Signing</div>
+</div>
+<!-- Feature 4 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-sm hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-lg bg-error-container flex items-center justify-center text-aid-red mb-space-xs">
+<span class="material-symbols-outlined text-[28px]">timer</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary">&lt; 45 Min Triage SLA</h3>
+<p class="font-body-md text-body-md text-text-secondary">Double-blind triage queue isolates high-risk markers before elective reviews, enforcing strict response SLAs across clinical networks.</p>
+<div class="mt-auto pt-space-sm font-mono-data text-mono-data text-aid-red">Priority Auto-Escalation</div>
+</div>
+</div>
+</div>
+<!-- Interactive Multi-Role Access Diagram Section -->
+<div class="pt-space-lg pb-space-xl" id="role-navigator">
+<div class="flex flex-col gap-space-xs mb-space-md">
+<span class="font-mono-data text-mono-data text-primary uppercase">Architecture Deep Dive</span>
+<h2 class="font-headline-lg text-headline-lg text-text-primary">Interactive 4-Way Clinical Role Separation</h2>
+<p class="font-body-md text-body-md text-text-secondary">Select an actor profile to explore their operational scope, cryptographic boundaries, and live interface preview.</p>
+</div>
+<!-- Role Tabs -->
+<div class="flex flex-wrap gap-space-xs bg-surface-container p-1 rounded-xl mb-space-md">
+<button class="role-tab flex-1 py-space-sm px-space-md rounded-lg font-label-md text-label-md flex items-center justify-center gap-space-xs transition-all bg-surface-container-lowest text-primary shadow-sm font-semibold" id="tab-patient" onclick="switchRole('patient')">
+<span class="material-symbols-outlined text-[20px]">person</span>
+          1. Patient / Sovereign Citizen
+        </button>
+<button class="role-tab flex-1 py-space-sm px-space-md rounded-lg font-label-md text-label-md flex items-center justify-center gap-space-xs transition-all text-text-secondary hover:text-text-primary" id="tab-doctor" onclick="switchRole('doctor')">
+<span class="material-symbols-outlined text-[20px]">stethoscope</span>
+          2. Doctor / Specialist
+        </button>
+<button class="role-tab flex-1 py-space-sm px-space-md rounded-lg font-label-md text-label-md flex items-center justify-center gap-space-xs transition-all text-text-secondary hover:text-text-primary" id="tab-ops" onclick="switchRole('ops')">
+<span class="material-symbols-outlined text-[20px]">rule_folder</span>
+          3. Operations / Registrar
+        </button>
+<button class="role-tab flex-1 py-space-sm px-space-md rounded-lg font-label-md text-label-md flex items-center justify-center gap-space-xs transition-all text-text-secondary hover:text-text-primary" id="tab-admin" onclick="switchRole('admin')">
+<span class="material-symbols-outlined text-[20px]">admin_panel_settings</span>
+          4. System Administrator
+        </button>
+</div>
+<!-- Dynamic Role Content Showcase -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md">
+<!-- Patient Panel -->
+<div class="role-panel grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center" id="panel-patient">
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<div class="inline-flex items-center gap-1 text-primary font-mono-data text-mono-data">
+<span class="material-symbols-outlined text-[16px]">fingerprint</span>
+              ACTOR: SOVEREIGN PATIENT / AMARA PERERA
+            </div>
+<h3 class="font-headline-md text-headline-md text-text-primary">Longitudinal Timeline &amp; Instant Access Revocation</h3>
+<p class="font-body-md text-body-md text-text-secondary">
+              Patients possess exclusive private keys to grant, time-box, or terminate clinical visibility. Upload radiology DICOM files, genomic markers, and immunization history with fine-grained granular permissions.
+            </p>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-text-primary">
+<span class="material-symbols-outlined text-health-green text-[18px]">check_circle</span>
+                Permanent longitudinal timeline from pediatric to geriatric care
+              </div>
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-text-primary">
+<span class="material-symbols-outlined text-health-green text-[18px]">check_circle</span>
+                One-tap instant doctor clearance revocation with immediate key shredding
+              </div>
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-text-primary">
+<span class="material-symbols-outlined text-health-green text-[18px]">check_circle</span>
+                Biometric proof-of-identity attestation via National Digital Health ID
+              </div>
+</div>
+<button class="self-start mt-space-sm flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-space-sm rounded-lg font-label-md text-label-md hover:bg-primary-container" onclick="fillDemoAndScroll('Amara Perera', 'amara.p@phrms.lk', 'patient')">
+<span>Test as Amara Perera (Citizen)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="lg:col-span-7 bg-surface-container-low p-space-md rounded-xl">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-surface-container-highest">
+<span class="font-mono-data text-mono-data text-text-secondary">PATIENT_CONSOLE // PORTAL_VIEW</span>
+<span class="font-label-sm text-label-sm bg-secondary-fixed/50 text-on-secondary-fixed-variant px-2 py-0.5 rounded-full font-medium">SOVEREIGN MODE</span>
+</div>
+<div class="space-y-space-sm">
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-text-primary">Cardiology Diagnostic &amp; Stress ECG</div>
+<div class="font-mono-data text-mono-data text-text-secondary">Asiri Central Hospital • Dr. Nalin Bandara</div>
+</div>
+</div>
+<button class="bg-error-container hover:bg-red-200 text-on-error-container px-space-sm py-1 rounded text-label-sm font-label-sm font-semibold transition-all">Revoke Access</button>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">biotech</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-text-primary">Fasting Blood Glucose &amp; HbA1c Panel</div>
+<div class="font-mono-data text-mono-data text-text-secondary">Nawaloka Diagnostics • Verified 09:30 AM</div>
+</div>
+</div>
+<span class="font-mono-data text-mono-data text-health-green font-medium">ACTIVE (24h EXPIRE)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Doctor Panel -->
+<div class="role-panel hidden grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center" id="panel-doctor">
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<div class="inline-flex items-center gap-1 text-primary font-mono-data text-mono-data">
+<span class="material-symbols-outlined text-[16px]">medical_services</span>
+              ACTOR: LICENSED SPECIALIST / DR. NALIN BANDARA
+            </div>
+<h3 class="font-headline-md text-headline-md text-text-primary">Clinical Briefings &amp; Critical Allergy Guardrails</h3>
+<p class="font-body-md text-body-md text-text-secondary">
+              Physicians receive filtered, pre-triaged diagnostic digests. High-risk cross-reactive allergy alerts (#D62828) populate immediately on patient handshake to prevent adverse pharmacotherapy events.
+            </p>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-text-primary">
+<span class="material-symbols-outlined text-aid-red text-[18px]">emergency</span>
+                Unfiltered anaphylaxis &amp; drug contraindication banners
+              </div>
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-text-primary">
+<span class="material-symbols-outlined text-health-green text-[18px]">check_circle</span>
+                Lab diagnostics verified with cryptographic notary stamp
+              </div>
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-text-primary">
+<span class="material-symbols-outlined text-health-green text-[18px]">check_circle</span>
+                Standardized FHIR Observation &amp; DiagnosticReport streaming
+              </div>
+</div>
+<button class="self-start mt-space-sm flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-space-sm rounded-lg font-label-md text-label-md hover:bg-primary-container" onclick="fillDemoAndScroll('Dr. Nalin Bandara', 'dr.nalin@slma.lk', 'doctor')">
+<span>Test as Dr. Nalin Bandara (Doctor)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="lg:col-span-7 bg-surface-container-low p-space-md rounded-xl">
+<!-- Urgent Allergy Banner -->
+<div class="bg-aid-red text-clean-white p-space-sm rounded-lg mb-space-sm flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[24px]">warning</span>
+<div>
+<div class="font-label-md text-label-md font-bold">CRITICAL ALLERGY ALERT: PENICILLIN GROUP</div>
+<div class="font-body-sm text-body-sm text-clean-white/90">Severe anaphylaxis reported (ICD-10 Z88.0). Cephalosporins require observation.</div>
+</div>
+</div>
+<span class="font-mono-data text-mono-data bg-clean-white/20 px-2 py-1 rounded">LEVEL 4 HIGH</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-col gap-space-xs">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-text-primary font-semibold">Pre-Consultation Diagnostic Summary</span>
+<span class="font-mono-data text-mono-data text-primary">DR-TOKEN: #VK-909</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<div class="bg-surface-container-low p-space-xs rounded">
+<span class="font-mono-data text-mono-data text-text-secondary block">Blood Pressure (Resting)</span>
+<span class="font-headline-sm text-headline-sm text-text-primary">128/84 <span class="font-body-sm text-body-sm text-text-secondary">mmHg</span></span>
+</div>
+<div class="bg-surface-container-low p-space-xs rounded">
+<span class="font-mono-data text-mono-data text-text-secondary block">Serum Creatinine</span>
+<span class="font-headline-sm text-headline-sm text-text-primary">0.92 <span class="font-body-sm text-body-sm text-text-secondary">mg/dL</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Operations Panel -->
+<div class="role-panel hidden grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center" id="panel-ops">
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<div class="inline-flex items-center gap-1 text-secondary font-mono-data text-mono-data">
+<span class="material-symbols-outlined text-[16px]">visibility_off</span>
+              ACTOR: OPERATIONS / REGISTRAR MALINI FERNANDO
+            </div>
+<h3 class="font-headline-md text-headline-md text-text-primary">Double-Blind Verification Desk &amp; Fraud Prevention</h3>
+<p class="font-body-md text-body-md text-text-secondary">
+              Review registrars authenticate clinical lab uploads and institution registrations without exposing Personally Identifiable Information (PII), thwarting identity leaks and medical billing fraud.
+            </p>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-text-primary">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+                Full pseudonymization: Patient PII hashed into blind tokens
+              </div>
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-text-primary">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+                SLMA/Ministry institutional license cross-checking
+              </div>
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-text-primary">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+                Triage SLA monitor with automated queue escalation
+              </div>
+</div>
+<button class="self-start mt-space-sm flex items-center gap-space-xs bg-secondary text-on-secondary px-space-md py-space-sm rounded-lg font-label-md text-label-md hover:bg-secondary/90" onclick="fillDemoAndScroll('Malini Fernando', 'malini.ops@healthnet.gov.lk', 'ops')">
+<span>Test as Malini Fernando (Ops)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="lg:col-span-7 bg-surface-container-low p-space-md rounded-xl">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-surface-container-highest">
+<span class="font-mono-data text-mono-data text-text-secondary">DOUBLE_BLIND_TRIAGE_DESK // QUEUE_ACTIVE</span>
+<span class="font-mono-data text-mono-data bg-error-container text-on-error-container px-2 py-0.5 rounded">SLA TARGET: &lt;45 MIN</span>
+</div>
+<div class="space-y-space-sm">
+<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex items-center justify-between">
+<div>
+<div class="font-mono-data text-mono-data text-text-primary font-bold">CASE-BLIND-7781-B</div>
+<div class="text-body-sm font-body-sm text-text-secondary">Category: Histopathology Document Authentication</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-mono-data text-mono-data text-health-green font-semibold">12m in queue</span>
+<button class="bg-primary text-on-primary px-space-sm py-1 rounded text-label-sm font-label-sm">Verify Seal</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex items-center justify-between">
+<div>
+<div class="font-mono-data text-mono-data text-text-primary font-bold">CASE-BLIND-7782-A</div>
+<div class="text-body-sm font-body-sm text-text-secondary">Category: Genomic Panel Multi-Facility Merge</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-mono-data text-mono-data text-text-secondary font-semibold">31m in queue</span>
+<button class="bg-surface-container-high text-on-surface px-space-sm py-1 rounded text-label-sm font-label-sm">Reviewing</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Administrator Panel -->
+<div class="role-panel hidden grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center" id="panel-admin">
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<div class="inline-flex items-center gap-1 text-inverse-surface font-mono-data text-mono-data">
+<span class="material-symbols-outlined text-[16px]">shield_person</span>
+              ACTOR: GOVERNANCE / DR. K. WICKRAMASINGHE
+            </div>
+<h3 class="font-headline-md text-headline-md text-text-primary">System Governance &amp; Cryptographic Audit Logs</h3>
+<p class="font-body-md text-body-md text-text-secondary">
+              Platform administrators oversee role privilege hierarchies, cluster key rotators, and inspect append-only tamper-evident logs designed for regulatory compliance.
+            </p>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-text-primary">
+<span class="material-symbols-outlined text-text-primary text-[18px]">check_circle</span>
+                Immutable audit ledger tracking every query, grant, and revocation
+              </div>
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-text-primary">
+<span class="material-symbols-outlined text-text-primary text-[18px]">check_circle</span>
+                Role-Based Access Control (RBAC) with hardware multi-factor tokens
+              </div>
+<div class="flex items-center gap-space-xs text-body-sm font-body-sm text-text-primary">
+<span class="material-symbols-outlined text-text-primary text-[18px]">check_circle</span>
+                Emergency disaster break-glass protocols with mandatory judicial review
+              </div>
+</div>
+<button class="self-start mt-space-sm flex items-center gap-space-xs bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded-lg font-label-md text-label-md hover:bg-on-surface" onclick="fillDemoAndScroll('Dr. K. Wickramasinghe', 'k.wick@healthgov.lk', 'admin')">
+<span>Test as Dr. Wickramasinghe (SysAdmin)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="lg:col-span-7 bg-surface-container-low p-space-md rounded-xl font-mono-data text-mono-data">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-surface-container-highest">
+<span class="text-text-secondary">MERKLE_CHAIN_INTEGRITY: ROOT_HASH_VALID</span>
+<span class="text-health-green font-semibold">BLOCK #984,112</span>
+</div>
+<div class="bg-inverse-surface text-inverse-on-surface p-space-sm rounded-lg text-body-sm space-y-2">
+<div class="flex items-center justify-between text-secondary-fixed">
+<span>[10:44:01 UTC] AUTH_TOKEN_REVOCATION</span>
+<span>SIGN_SHA256: 8a4f...21c</span>
+</div>
+<div class="text-cool-gray">
+                Subject: USER#AP-9921 -&gt; TARGET: CLINIC#ASIRI-CARDIO-88
+              </div>
+<div class="flex items-center justify-between text-health-green pt-1 border-t border-cool-gray/20">
+<span>[10:43:18 UTC] HL7_FHIR_INGEST_PASS</span>
+<span>PACKET: 1,420 bytes</span>
+</div>
+<div class="text-cool-gray">
+                Origin: NAWALOKA_LAB_GATEWAY (SLMA-CERT-VALIDATED)
+              </div>
+<div class="text-primary-fixed-dim pt-1 border-t border-cool-gray/20">
+<span>[10:40:02 UTC] PRIVILEGE_EXPIRY_TRIGGER</span>
+<span>EXPIRED_NODES: 3</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Institutional Facility Onboarding Callout Banner -->
+<div class="my-space-lg bg-surface-container-high rounded-xl p-space-lg shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<div class="lg:col-span-8 flex flex-col gap-space-xs">
+<span class="font-mono-data text-mono-data text-secondary">ENTERPRISE INTEROPERABILITY BRIDGE</span>
+<h3 class="font-headline-md text-headline-md text-text-primary">Are you a Hospital, Diagnostic Laboratory, or Clinic Network?</h3>
+<p class="font-body-md text-body-md text-text-secondary">
+          Deploy our FHIR HL7 Connector Gateway inside your private datacenter or AWS/Azure VPC. Onboard thousands of patient documents with automated zero-knowledge consent indexing.
+        </p>
+</div>
+<div class="lg:col-span-4 flex justify-end">
+<button class="w-full sm:w-auto bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md px-space-md py-space-sm rounded-lg shadow-sm transition-all flex items-center justify-center gap-space-xs" onclick="document.getElementById('institutional-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined">domain_add</span>
+          Initiate Facility Sandbox (v4.0.1)
+        </button>
+</div>
+</div>
+<!-- Unified Authentication & Pre-Filled Demo Profiles -->
+<div class="pt-space-lg pb-space-xl" id="demo-access">
+<div class="text-center max-w-2xl mx-auto mb-space-lg flex flex-col gap-space-xs">
+<span class="font-mono-data text-mono-data text-primary uppercase">Unified Single Sign-On Gateway</span>
+<h2 class="font-headline-lg text-headline-lg text-text-primary">Instant Sandbox Role Access</h2>
+<p class="font-body-md text-body-md text-text-secondary">
+          Select any verified persona to load realistic encrypted clinical sessions into the portal without entering manual credentials.
+        </p>
+</div>
+<!-- Quick Role Quick-Launch Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Persona 1 -->
+<div class="cursor-pointer bg-surface-container-lowest hover:bg-surface-container-low p-space-md rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col gap-space-sm group" onclick="fillDemo('Amara Perera', 'amara.p@phrms.lk', 'patient')">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-semibold">AP</div>
+<div>
+<div class="font-label-md text-label-md text-text-primary group-hover:text-primary transition-colors">Amara Perera</div>
+<div class="font-mono-data text-mono-data text-text-secondary">Sovereign Patient</div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary">Manages lifelong cardiac and lab timeline; tests instant doctor clearance revocations.</p>
+<div class="mt-auto flex items-center justify-between text-body-sm font-body-sm text-primary font-medium">
+<span>Pre-fill Login</span>
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+</div>
+</div>
+<!-- Persona 2 -->
+<div class="cursor-pointer bg-surface-container-lowest hover:bg-surface-container-low p-space-md rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col gap-space-sm group" onclick="fillDemo('Dr. Nalin Bandara', 'dr.nalin@slma.lk', 'doctor')">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-semibold">NB</div>
+<div>
+<div class="font-label-md text-label-md text-text-primary group-hover:text-secondary transition-colors">Dr. Nalin Bandara</div>
+<div class="font-mono-data text-mono-data text-text-secondary">Consultant Cardiologist</div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary">Reviews pre-consult diagnostic dossiers and flags urgent drug interaction allergies.</p>
+<div class="mt-auto flex items-center justify-between text-body-sm font-body-sm text-secondary font-medium">
+<span>Pre-fill Login</span>
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+</div>
+</div>
+<!-- Persona 3 -->
+<div class="cursor-pointer bg-surface-container-lowest hover:bg-surface-container-low p-space-md rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col gap-space-sm group" onclick="fillDemo('Malini Fernando', 'malini.ops@healthnet.gov.lk', 'ops')">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-text-primary font-semibold">MF</div>
+<div>
+<div class="font-label-md text-label-md text-text-primary group-hover:text-primary transition-colors">Malini Fernando</div>
+<div class="font-mono-data text-mono-data text-text-secondary">Verification Registrar</div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary">Double-blind triage queue reviewer validating institutional integrity and SLAs.</p>
+<div class="mt-auto flex items-center justify-between text-body-sm font-body-sm text-text-primary font-medium">
+<span>Pre-fill Login</span>
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+</div>
+</div>
+<!-- Persona 4 -->
+<div class="cursor-pointer bg-surface-container-lowest hover:bg-surface-container-low p-space-md rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col gap-space-sm group" onclick="fillDemo('Dr. K. Wickramasinghe', 'k.wick@healthgov.lk', 'admin')">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-inverse-surface flex items-center justify-center text-inverse-on-surface font-semibold">KW</div>
+<div>
+<div class="font-label-md text-label-md text-text-primary group-hover:text-primary transition-colors">Dr. Wickramasinghe</div>
+<div class="font-mono-data text-mono-data text-text-secondary">System Governance Admin</div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary">Inspects Merkle cryptographic tamper logs, role privileges, and infrastructure health.</p>
+<div class="mt-auto flex items-center justify-between text-body-sm font-body-sm text-inverse-surface font-medium">
+<span>Pre-fill Login</span>
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+</div>
+</div>
+</div>
+<!-- Live Login Simulation Card -->
+<div class="max-w-xl mx-auto bg-surface-container-lowest p-space-lg rounded-xl shadow-md">
+<div class="flex items-center justify-between pb-space-md border-b border-surface-container-high mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[24px]">vpn_key</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-text-primary">Sign In to PHRMS Cloud</h4>
+<p class="font-body-sm text-body-sm text-text-secondary">National Health Interoperability Protocol</p>
+</div>
+</div>
+<span class="font-mono-data text-mono-data bg-primary-fixed text-on-primary-fixed-variant px-space-sm py-0.5 rounded-full uppercase" id="role-tag-display">
+            PATIENT MODE
+          </span>
+</div>
+<form class="space-y-space-md" onsubmit="handlePortalSubmit(event)">
+<div>
+<label class="block font-label-md text-label-md text-text-primary mb-1" for="user-name-input">Authorized Name</label>
+<input class="w-full bg-surface-container-low text-on-surface px-space-md py-space-sm rounded-lg font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary transition-all" id="user-name-input" required="" type="text" value="Amara Perera"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-text-primary mb-1" for="user-email-input">Digital Identity (Health ID / SLMA Email)</label>
+<input class="w-full bg-surface-container-low text-on-surface px-space-md py-space-sm rounded-lg font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary transition-all" id="user-email-input" required="" type="email" value="amara.p@phrms.lk"/>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<label class="flex items-center gap-2 cursor-pointer font-body-sm text-body-sm text-text-secondary">
+<input checked="" class="rounded text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span>Hardware token verified</span>
+</label>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">Lost Digital Key?</a>
+</div>
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md py-space-sm rounded-lg shadow-sm transition-all flex items-center justify-center gap-space-xs" id="portal-submit-btn" type="submit">
+<span class="material-symbols-outlined text-[20px]">login</span>
+            Launch Verified Session
+          </button>
+<div class="hidden p-space-sm bg-surface-container-low rounded-lg text-center font-mono-data text-mono-data text-secondary" id="login-feedback">
+            Initializing zero-knowledge credentials session... Redirecting.
+          </div>
+</form>
+</div>
+</div>
+<!-- Institutional Facility Modal (Hidden by default) -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center p-gutter bg-inverse-surface/60 backdrop-blur-sm" id="institutional-modal">
+<div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-space-lg shadow-xl relative">
+<button class="absolute top-4 right-4 text-text-secondary hover:text-text-primary" onclick="document.getElementById('institutional-modal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="flex items-center gap-space-sm mb-space-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">corporate_fare</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-text-primary">Institutional Facility Registration</h4>
+<p class="font-body-sm text-body-sm text-text-secondary">Connect Hospital HIS / LIS to PHRMS Federation</p>
+</div>
+</div>
+<div class="space-y-space-md">
+<div>
+<label class="block font-label-md text-label-md text-text-primary mb-1">Facility Name</label>
+<input class="w-full bg-surface-container-low text-on-surface px-space-md py-space-sm rounded-lg font-body-md text-body-md" placeholder="e.g. National Hospital Cardiology Wing" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-text-primary mb-1">HL7 / FHIR Gateway Endpoint</label>
+<input class="w-full bg-surface-container-low text-on-surface px-space-md py-space-sm rounded-lg font-body-md text-body-md" placeholder="https://fhir.facility-domain.lk/v4" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-text-primary mb-1">Institutional Licensing ID</label>
+<input class="w-full bg-surface-container-low text-on-surface px-space-md py-space-sm rounded-lg font-body-md text-body-md" placeholder="SLMA-FAC-2025-XXXX" type="text"/>
+</div>
+<button class="w-full bg-secondary hover:bg-secondary/90 text-on-secondary py-space-sm rounded-lg font-label-md text-label-md transition-all flex items-center justify-center gap-space-xs" onclick="simulateInstitutionSubmit()">
+<span>Submit Verification Request</span>
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</button>
+<div class="hidden text-center font-mono-data text-mono-data text-health-green pt-1" id="modal-feedback">
+            Request submitted for double-blind registrar verification!
+          </div>
+</div>
+</div>
+</div>
+<!-- Clinical Regulatory Badges & Authoritative Footer -->
+<div class="pt-space-xl pb-space-md border-t border-surface-container-high mt-space-xl">
+<!-- Regulatory Compliance Strip -->
+<div class="flex flex-wrap items-center justify-around gap-space-md pb-space-lg">
+<div class="flex items-center gap-space-xs opacity-80 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-[28px]">health_and_safety</span>
+<div>
+<div class="font-label-sm text-label-sm text-text-primary font-bold">HL7® FHIR® R4</div>
+<div class="font-mono-data text-mono-data text-text-secondary">Interoperability Certified</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs opacity-80 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-secondary text-[28px]">lock</span>
+<div>
+<div class="font-label-sm text-label-sm text-text-primary font-bold">HIPAA Security Rule</div>
+<div class="font-mono-data text-mono-data text-text-secondary">Title II Physical &amp; Logical</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs opacity-80 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-text-primary text-[28px]">policy</span>
+<div>
+<div class="font-label-sm text-label-sm text-text-primary font-bold">ISO/IEC 27701:2019</div>
+<div class="font-mono-data text-mono-data text-text-secondary">Privacy Information Mgmt</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs opacity-80 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-aid-red text-[28px]">gavel</span>
+<div>
+<div class="font-label-sm text-label-sm text-text-primary font-bold">National Data Act</div>
+<div class="font-mono-data text-mono-data text-text-secondary">Sovereignty Compliant</div>
+</div>
+</div>
+</div>
+<!-- Legal & Copyright Footer -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-space-md border-t border-surface-container">
+<div class="flex items-center gap-space-sm">
+<div class="w-6 h-6 rounded bg-primary flex items-center justify-center text-on-primary font-bold text-xs">P</div>
+<span class="font-label-md text-label-md text-text-primary font-semibold">PHRMS Federation</span>
+<span class="text-cool-gray">•</span>
+<span class="font-body-sm text-body-sm text-text-secondary">Personal Health Record Management &amp; Sharing System</span>
+</div>
+<div class="font-mono-data text-mono-data text-text-secondary">
+          © 2025 Ministry of Health Interoperability Group. All cryptographic ledgers verified.
+        </div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function switchRole(roleId) {
+    // Hide all panels
+    const panels = document.querySelectorAll('.role-panel');
+    panels.forEach(p => p.classList.add('hidden'));
+
+    // Reset all tabs
+    const tabs = document.querySelectorAll('.role-tab');
+    tabs.forEach(t => {
+      t.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-semibold');
+      t.classList.add('text-text-secondary');
+    });
+
+    // Show selected panel
+    const selectedPanel = document.getElementById('panel-' + roleId);
+    if (selectedPanel) {
+      selectedPanel.classList.remove('hidden');
+    }
+
+    // Highlight selected tab
+    const selectedTab = document.getElementById('tab-' + roleId);
+    if (selectedTab) {
+      selectedTab.classList.remove('text-text-secondary');
+      selectedTab.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-semibold');
+    }
+  }
+
+  function fillDemo(name, email, roleKey) {
+    const nameInput = document.getElementById('user-name-input');
+    const emailInput = document.getElementById('user-email-input');
+    const roleTag = document.getElementById('role-tag-display');
+    const submitBtn = document.getElementById('portal-submit-btn');
+
+    if (nameInput) nameInput.value = name;
+    if (emailInput) emailInput.value = email;
+    
+    if (roleTag) {
+      roleTag.innerText = roleKey.toUpperCase() + ' MODE';
+      if (roleKey === 'patient') {
+        roleTag.className = 'font-mono-data text-mono-data bg-primary-fixed text-on-primary-fixed-variant px-space-sm py-0.5 rounded-full uppercase';
+      } else if (roleKey === 'doctor') {
+        roleTag.className = 'font-mono-data text-mono-data bg-secondary-fixed text-on-secondary-fixed-variant px-space-sm py-0.5 rounded-full uppercase';
+      } else if (roleKey === 'ops') {
+        roleTag.className = 'font-mono-data text-mono-data bg-surface-container-high text-on-surface px-space-sm py-0.5 rounded-full uppercase';
+      } else {
+        roleTag.className = 'font-mono-data text-mono-data bg-inverse-surface text-inverse-on-surface px-space-sm py-0.5 rounded-full uppercase';
+      }
+    }
+  }
+
+  function fillDemoAndScroll(name, email, roleKey) {
+    fillDemo(name, email, roleKey);
+    const demoSec = document.getElementById('demo-access');
+    if (demoSec) {
+      demoSec.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  function handlePortalSubmit(e) {
+    e.preventDefault();
+    const feedback = document.getElementById('login-feedback');
+    if (feedback) {
+      feedback.classList.remove('hidden');
+      setTimeout(() => {
+        feedback.innerText = 'Token verified! Authorizing localized session cookie...';
+      }, 1200);
+    }
+  }
+
+  function simulateInstitutionSubmit() {
+    const feedback = document.getElementById('modal-feedback');
+    if (feedback) {
+      feedback.classList.remove('hidden');
+      setTimeout(() => {
+        document.getElementById('institutional-modal').classList.add('hidden');
+        feedback.classList.add('hidden');
+      }, 2000);
+    }
+  }
+</script></main></body></html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error-container": "#93000a", "inverse-surface": "#2d3134", "on-error": "#ffffff", "surface-tint": "#00658b", "secondary": "#006a6a", "clean-white": "#FFFFFF", "on-secondary": "#ffffff", "on-primary-fixed-variant": "#004c69", "primary-fixed": "#c4e7ff", "surface-container-low": "#f1f4f8", "background": "#f7fafd", "secondary-fixed": "#93f2f2", "on-background": "#181c1f", "surface-container-highest": "#e0e3e7", "primary-fixed-dim": "#7cd0ff", "primary-container": "#007ba7", "error": "#ba1a1a", "tertiary": "#834d00", "cool-gray": "#A9B0B3", "on-tertiary-fixed": "#2c1600", "inverse-primary": "#7cd0ff", "surface-container-lowest": "#ffffff", "primary": "#006184", "inverse-on-surface": "#eef1f5", "app-bg": "#F4F7F8", "on-secondary-fixed-variant": "#004f4f", "surface-bright": "#f7fafd", "on-surface-variant": "#3f484e", "on-tertiary-fixed-variant": "#683c00", "outline-variant": "#bfc8cf", "text-secondary": "#5A6570", "surface-variant": "#e0e3e7", "surface-dim": "#d7dade", "secondary-container": "#90efef", "health-green": "#4CAF50", "surface-container-high": "#e5e8ec", "error-container": "#ffdad6", "on-surface": "#181c1f", "on-secondary-container": "#006e6e", "text-primary": "#1E293B", "aid-red": "#D62828", "on-primary-fixed": "#001e2c", "outline": "#6f787f", "surface": "#f7fafd", "on-primary-container": "#f5faff", "tertiary-container": "#a36410", "secondary-fixed-dim": "#76d6d5", "on-tertiary": "#ffffff", "tertiary-fixed": "#ffdcbc", "on-secondary-fixed": "#002020", "surface-container": "#ebeef2", "tertiary-fixed-dim": "#ffb86c", "on-tertiary-container": "#fff8f4", "on-primary": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "16px", "gutter": "24px", "space-xl": "32px", "space-xs": "4px", "space-lg": "24px", "space-sm": "8px", "margin": "32px" }, "fontFamily": { "headline-lg": [ "Inter" ], "label-md": [ "Plus Jakarta Sans" ], "body-lg": [ "Inter" ], "label-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Inter" ], "headline-md": [ "Inter" ], "body-sm": [ "Inter" ], "mono-data": [ "JetBrains Mono" ], "headline-sm": [ "Inter" ] }, "fontSize": { "headline-lg": [ "32px", { "lineHeight": "40px", "fontWeight": "600" } ], "label-md": [ "14px", { "lineHeight": "20px", "fontWeight": "500" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "label-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "500" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-md": [ "24px", { "lineHeight": "32px", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "mono-data": [ "13px", { "lineHeight": "18px", "fontWeight": "400" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "fontWeight": "600" } ] } } } }</script></head><body class="bg-background font-body-md text-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest"><div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-on-primary"><span class="material-symbols-outlined text-[22px]">local_hospital</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight leading-none">AegisPHR</span><span class="font-label-sm text-label-sm text-on-surface-variant">Clinical Health Cloud</span></div></div><div class="px-space-md py-space-sm bg-surface-container-low"><div class="p-space-sm bg-surface-container rounded-lg flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-health-green"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Current Active View</span></div><span class="px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Physician</span></div></div><nav class="flex flex-col gap-1 px-space-md py-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-sm"><div class="px-space-sm py-1 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Patient Central</div><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="patient-dashboard" href="#"><span class="material-symbols-outlined text-[20px]">account_circle</span><span class="font-body-md text-body-md">Patient Records</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="consent-and-access-sharing" href="#"><span class="material-symbols-outlined text-[20px]">lock_person</span><span class="font-body-md text-body-md">Consent &amp; Sharing</span></a><div class="px-space-sm pt-space-md pb-1 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Clinical &amp; Operations</div><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="physician-clinical-portal" href="#"><span class="material-symbols-outlined text-[20px]">stethoscope</span><span class="font-body-md text-body-md">Physician Portal</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="document-review-queue" href="#"><span class="material-symbols-outlined text-[20px]">fact_check</span><span class="font-body-md text-body-md">Review Queue</span></a><div class="px-space-sm pt-space-md pb-1 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Governance</div><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-sm transition-colors bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-sm" data-path="system-administration" href="#"><span class="material-symbols-outlined text-[20px]">admin_panel_settings</span><span class="font-body-md text-body-md">Admin Console</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="compliance-audit-logs" href="#"><span class="material-symbols-outlined text-[20px]">shield</span><span class="font-body-md text-body-md">Audit Ledger</span></a></nav></div><div class="p-space-md bg-surface-container-lowest"><div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-lg"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface font-semibold leading-none">Dr. E. Vance</span><span class="font-label-sm text-label-sm text-on-surface-variant">Staff ID #9042</span></div></div><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="system-login" href="#" title="Sign out"><span class="material-symbols-outlined text-[20px]">logout</span></a></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/85 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1.5 rounded-lg"><span class="material-symbols-outlined text-on-surface-variant text-[18px]">supervised_user_circle</span><span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Switch Role:</span><div class="flex items-center gap-1"><a class="px-2 py-0.5 rounded font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="patient-dashboard" href="#">Patient</a><a class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-primary text-on-primary font-semibold transition-colors" data-path="physician-clinical-portal" href="#">Doctor</a><a class="px-2 py-0.5 rounded font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="document-review-queue" href="#">Registrar</a><a class="px-2 py-0.5 rounded font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="system-administration" href="#">Admin</a></div></div></div><div class="flex items-center gap-space-md"><div class="relative flex items-center"><button class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors relative" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-aid-red"></span></button></div><div class="relative flex items-center"><button class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">help</span></button></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-label-md font-semibold text-on-surface leading-tight">Dr. Eleanor Vance, MD</span><span class="font-label-sm text-label-sm text-secondary font-medium leading-tight">Cardiology Attending</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-16 bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full px-space-lg py-space-md flex flex-col gap-space-lg max-w-[1400px] mx-auto">
+<!-- Top Officer Banner & Strategic Bar -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-space-md">
+<div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-gradient-to-br from-primary/10 via-secondary-container/20 to-transparent pointer-events-none blur-2xl"></div>
+<div class="flex items-center gap-space-md z-10">
+<div class="relative w-14 h-14 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-md">
+<span class="material-symbols-outlined text-[32px]">admin_panel_settings</span>
+<span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-health-green ring-2 ring-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">K. Wickramasinghe</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-mono-data text-[11px] font-medium tracking-wide">SEC-ID #001-CISO</span>
+</div>
+<span class="font-label-md text-label-md text-text-secondary">Chief Information Security Officer &amp; Principal Systems Authority</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm z-10">
+<div class="flex items-center gap-2 px-space-sm py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-health-green animate-pulse"></span>
+<span class="font-mono-data text-mono-data text-on-surface">SOC2 / HIPAA High-Sec Enforcement Active</span>
+</div>
+<button class="px-space-md py-2 rounded-lg bg-error-container text-on-error-container hover:bg-error hover:text-on-error transition-all font-label-md text-label-md font-semibold flex items-center gap-1.5 shadow-sm" id="lockdown-btn">
+<span class="material-symbols-outlined text-[18px]">lock_reset</span>
+          Emergency Policy Lock
+        </button>
+</div>
+</div>
+<!-- Top Metrics Ribbon (Scale, Precision, Data Clarity) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Metric 1: System Integrity -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-secondary">System Integrity</span>
+<span class="p-1.5 rounded-lg bg-surface-container-low text-secondary">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</span>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">99.98%</span>
+<span class="font-label-sm text-label-sm text-health-green font-semibold flex items-center">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> SLA Met
+            </span>
+</div>
+<div class="mt-2 w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 99.98%;"></div>
+</div>
+</div>
+<div class="mt-space-sm pt-space-xs flex justify-between font-mono-data text-body-sm text-text-secondary">
+<span>Target: 99.95%</span>
+<span>Zero Failover Incidents</span>
+</div>
+</div>
+<!-- Metric 2: Delegated Consents -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-secondary">Active Delegated Consents</span>
+<span class="p-1.5 rounded-lg bg-surface-container-low text-primary">
+<span class="material-symbols-outlined text-[20px]">share_reviews</span>
+</span>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">142</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Active Tokens</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1">Cross-entity records under patient revocable delegation</p>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-center gap-1 font-mono-data text-body-sm text-text-secondary">
+<span class="material-symbols-outlined text-[16px] text-health-green">check_circle</span>
+<span>Zero Expired Leakage</span>
+</div>
+</div>
+<!-- Metric 3: Active Users Breakdown -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-secondary">System Users</span>
+<span class="p-1.5 rounded-lg bg-surface-container-low text-primary-container text-on-primary-container">
+<span class="material-symbols-outlined text-[20px]">group</span>
+</span>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">1,840</span>
+<span class="font-label-sm text-label-sm text-text-secondary">Total Identities</span>
+</div>
+<div class="mt-2 flex h-2 rounded-full overflow-hidden bg-surface-container">
+<div class="bg-primary hover:opacity-90" style="width: 77.1%" title="Patients: 1,420"></div>
+<div class="bg-secondary hover:opacity-90" style="width: 11.4%" title="Doctors: 210"></div>
+<div class="bg-tertiary-container hover:opacity-90" style="width: 1.9%" title="Registrars: 35"></div>
+<div class="bg-aid-red hover:opacity-90" style="width: 0.3%" title="Admins: 5"></div>
+</div>
+</div>
+<div class="mt-space-sm pt-space-xs grid grid-cols-4 gap-1 text-center font-mono-data text-[11px] text-text-secondary">
+<div class="bg-surface-container-low rounded py-0.5">P: 1,420</div>
+<div class="bg-surface-container-low rounded py-0.5">Dr: 210</div>
+<div class="bg-surface-container-low rounded py-0.5">Reg: 35</div>
+<div class="bg-surface-container-low rounded py-0.5">Adm: 5</div>
+</div>
+</div>
+<!-- Metric 4: Cryptographic Ledger Blocks -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-secondary">Tamper-Evident Ledger</span>
+<span class="p-1.5 rounded-lg bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-[20px]">enhanced_encryption</span>
+</span>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">4,821</span>
+<span class="font-label-sm text-label-sm text-health-green font-semibold">Blocks</span>
+</div>
+<p class="font-mono-data text-body-sm text-text-secondary mt-1 truncate">Merkle Root: 0x9f1a…c84b</p>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between font-mono-data text-body-sm text-text-secondary">
+<span class="text-health-green flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-health-green"></span> Synced
+          </span>
+<span>SHA-256 Validated</span>
+</div>
+</div>
+</div>
+<!-- Section 1: Multi-Role Access Control & Identity Governance Matrix -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm px-1">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold">Section 01 // Security Architecture</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Multi-Role Access Control &amp; Identity Governance Matrix</h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-text-secondary">Attribute-Based RBAC v4.2</span>
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">tune</span> Policy Configurator
+          </button>
+</div>
+</div>
+<div class="overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<tr>
+<th class="py-space-md px-space-lg">Role Archetype</th>
+<th class="py-space-md px-space-md">Enforced Privileges &amp; Granted Operations</th>
+<th class="py-space-md px-space-md">Cryptographic &amp; Boundary Restrictions</th>
+<th class="py-space-md px-space-md">Active Pool</th>
+<th class="py-space-md px-space-lg text-right">Access Governance</th>
+</tr>
+</thead>
+<tbody class="divide-none font-body-md text-body-md text-on-surface">
+<!-- PATIENT / USER -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-lg align-top">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</div>
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface block">PATIENT / USER</span>
+<span class="font-mono-data text-body-sm text-text-secondary">ROLE_PATIENT</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md align-top">
+<div class="flex flex-wrap gap-1.5 max-w-md">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Self-managed records</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Upload drafts</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Grant/Revoke doctor access</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Build health summaries</span>
+</div>
+</td>
+<td class="py-space-md px-space-md align-top">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-cool-gray">block</span>
+<span>No unmasked peer clinical views; restricted from facility diagnostic logs</span>
+</div>
+</td>
+<td class="py-space-md px-space-md align-top">
+<span class="font-mono-data text-mono-data font-semibold text-primary">1,420 Active</span>
+</td>
+<td class="py-space-md px-space-lg align-top text-right">
+<span class="px-2.5 py-1 rounded-full bg-health-green/10 text-health-green font-label-sm text-label-sm font-semibold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-health-green"></span> Self-Sovereign
+                  </span>
+</td>
+</tr>
+<!-- PHYSICIAN / DOCTOR -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-low/20">
+<td class="py-space-md px-space-lg align-top">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">stethoscope</span>
+</div>
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface block">PHYSICIAN / DOCTOR</span>
+<span class="font-mono-data text-body-sm text-text-secondary">ROLE_CLINICIAN</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md align-top">
+<div class="flex flex-wrap gap-1.5 max-w-md">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">View patient-consented records</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">Clinical consultation briefings</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">Append signed clinical impressions</span>
+</div>
+</td>
+<td class="py-space-md px-space-md align-top">
+<div class="flex items-center gap-1.5 text-aid-red font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">do_not_disturb_on</span>
+<span>Restricted from raw unverified patient uploads</span>
+</div>
+</td>
+<td class="py-space-md px-space-md align-top">
+<span class="font-mono-data text-mono-data font-semibold text-secondary">210 Verified</span>
+</td>
+<td class="py-space-md px-space-lg align-top text-right">
+<span class="px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> NPI / License Bound
+                  </span>
+</td>
+</tr>
+<!-- OPERATIONS / REGISTRAR -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-lg align-top">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">fact_check</span>
+</div>
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface block">OPERATIONS / REGISTRAR</span>
+<span class="font-mono-data text-body-sm text-text-secondary">ROLE_REGISTRAR</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md align-top">
+<div class="flex flex-wrap gap-1.5 max-w-md">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">Double-blind document triage</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">Validate hospital stamps &amp; seal</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">Request corrections &amp; retakes</span>
+</div>
+</td>
+<td class="py-space-md px-space-md align-top">
+<div class="flex items-center gap-1.5 text-aid-red font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">visibility_off</span>
+<span>Restricted from doctor consultation impressions &amp; notes</span>
+</div>
+</td>
+<td class="py-space-md px-space-md align-top">
+<span class="font-mono-data text-mono-data font-semibold text-on-surface">35 Stationed</span>
+</td>
+<td class="py-space-md px-space-lg align-top text-right">
+<span class="px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm font-semibold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Double-Blind Gate
+                  </span>
+</td>
+</tr>
+<!-- SYSTEM ADMINISTRATOR -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-low/20">
+<td class="py-space-md px-space-lg align-top">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-inverse-surface text-inverse-on-surface flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">shield_person</span>
+</div>
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface block">SYSTEM ADMINISTRATOR</span>
+<span class="font-mono-data text-body-sm text-text-secondary">ROLE_SUPERADMIN</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md align-top">
+<div class="flex flex-wrap gap-1.5 max-w-md">
+<span class="px-2 py-0.5 rounded-full bg-inverse-surface text-inverse-on-surface font-label-sm text-label-sm">Manage user roles</span>
+<span class="px-2 py-0.5 rounded-full bg-inverse-surface text-inverse-on-surface font-label-sm text-label-sm">Audit log inspection</span>
+<span class="px-2 py-0.5 rounded-full bg-error text-on-error font-label-sm text-label-sm">Emergency revocations</span>
+<span class="px-2 py-0.5 rounded-full bg-inverse-surface text-inverse-on-surface font-label-sm text-label-sm">Facility onboarding</span>
+</div>
+</td>
+<td class="py-space-md px-space-md align-top">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">key</span>
+<span>Zero Direct PHI decryption without emergency break-glass quorum</span>
+</div>
+</td>
+<td class="py-space-md px-space-md align-top">
+<span class="font-mono-data text-mono-data font-semibold text-aid-red">5 Cleared</span>
+</td>
+<td class="py-space-md px-space-lg align-top text-right">
+<span class="px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-aid-red"></span> Multi-Sig MFA
+                  </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Section 2: Live Tamper-Evident Cryptographic Audit Ledger -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm px-1">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold">Section 02 // Immutability &amp; Traceability</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Live Tamper-Evident Cryptographic Audit Ledger</h2>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-1.5 px-space-sm py-1.5 rounded-lg bg-surface-container-low font-mono-data text-body-sm text-text-secondary">
+<span class="w-2 h-2 rounded-full bg-health-green animate-ping"></span>
+<span>Live Stream UTC</span>
+</div>
+<button class="px-space-md py-2 rounded-lg bg-primary text-on-primary hover:bg-primary/90 transition-colors font-label-md text-label-md font-semibold flex items-center gap-2 shadow-sm" id="export-legal-btn">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+            Export Legal Audit Proof
+          </button>
+</div>
+</div>
+<div class="overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm flex flex-col">
+<!-- Filter bar -->
+<div class="p-space-md bg-surface-container-low flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-label-sm text-label-sm text-text-secondary">Quick Filter Action:</span>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest font-mono-data text-[12px] text-on-surface shadow-xs hover:bg-surface-container-high transition-colors">ALL (4,821)</button>
+<button class="px-2.5 py-1 rounded bg-surface-container font-mono-data text-[12px] text-aid-red hover:bg-surface-container-high transition-colors">EMERGENCY_REVOCATION</button>
+<button class="px-2.5 py-1 rounded bg-surface-container font-mono-data text-[12px] text-secondary hover:bg-surface-container-high transition-colors">DOCTOR_VIEWED_TIMELINE</button>
+<button class="px-2.5 py-1 rounded bg-surface-container font-mono-data text-[12px] text-tertiary-container hover:bg-surface-container-high transition-colors">RECORD_APPROVED</button>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-mono-data text-body-sm text-text-secondary">Hash Algorithm: SHA-256 (Merkle Sequence)</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<tr>
+<th class="py-space-sm px-space-lg">Block #</th>
+<th class="py-space-sm px-space-md">UTC Timestamp</th>
+<th class="py-space-sm px-space-md">Actor &amp; Origin</th>
+<th class="py-space-sm px-space-md">Role</th>
+<th class="py-space-sm px-space-md">Action Code</th>
+<th class="py-space-sm px-space-lg">SHA-256 Digest</th>
+</tr>
+</thead>
+<tbody class="divide-none font-mono-data text-mono-data">
+<!-- Row 1: Emergency Revocation -->
+<tr class="hover:bg-error-container/20 transition-colors bg-error-container/5">
+<td class="py-space-md px-space-lg text-text-secondary font-semibold">#04821</td>
+<td class="py-space-md px-space-md text-on-surface">2025-05-14 14:38:09 UTC</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="text-on-surface font-semibold">K. Wickramasinghe</span>
+<span class="text-[11px] text-text-secondary">IP: 192.241.14.88 (HQ VPN)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded bg-inverse-surface text-inverse-on-surface font-label-sm text-[11px] font-semibold">ADMIN</span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-1 rounded bg-error text-on-error font-label-sm text-label-sm font-semibold tracking-wide inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> EMERGENCY_REVOCATION
+                  </span>
+</td>
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-2 group cursor-pointer" title="Click to copy hash">
+<span class="text-text-secondary group-hover:text-primary transition-colors">4f8a812e17c0…9d82e118</span>
+<span class="material-symbols-outlined text-[16px] text-cool-gray group-hover:text-primary transition-colors">content_copy</span>
+</div>
+</td>
+</tr>
+<!-- Row 2: Doctor Viewed Timeline -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-lg text-text-secondary font-semibold">#04820</td>
+<td class="py-space-md px-space-md text-on-surface">2025-05-14 14:35:42 UTC</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="text-on-surface font-semibold">Dr. Eleanor Vance</span>
+<span class="text-[11px] text-text-secondary">Workstation 4B-Cardio</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[11px] font-semibold">PHYSICIAN</span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold tracking-wide inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">visibility</span> DOCTOR_VIEWED_TIMELINE
+                  </span>
+</td>
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-2 group cursor-pointer" title="Click to copy hash">
+<span class="text-text-secondary group-hover:text-primary transition-colors">7e9140bf3891…aa0109c1</span>
+<span class="material-symbols-outlined text-[16px] text-cool-gray group-hover:text-primary transition-colors">content_copy</span>
+</div>
+</td>
+</tr>
+<!-- Row 3: Record Approved -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-lg text-text-secondary font-semibold">#04819</td>
+<td class="py-space-md px-space-md text-on-surface">2025-05-14 14:31:18 UTC</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="text-on-surface font-semibold">M. Sterling (Registrar)</span>
+<span class="text-[11px] text-text-secondary">Central Intake Depot</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[11px] font-semibold">OPERATIONS</span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-1 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold tracking-wide inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">done_all</span> RECORD_APPROVED
+                  </span>
+</td>
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-2 group cursor-pointer" title="Click to copy hash">
+<span class="text-text-secondary group-hover:text-primary transition-colors">32cb9f82d140…fe8991a0</span>
+<span class="material-symbols-outlined text-[16px] text-cool-gray group-hover:text-primary transition-colors">content_copy</span>
+</div>
+</td>
+</tr>
+<!-- Row 4: Access Granted -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-lg text-text-secondary font-semibold">#04818</td>
+<td class="py-space-md px-space-md text-on-surface">2025-05-14 14:26:01 UTC</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="text-on-surface font-semibold">T. Thorne (Patient)</span>
+<span class="text-[11px] text-text-secondary">Mobile Authenticator iOS</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-[11px] font-semibold">PATIENT</span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2 py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold tracking-wide inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">key</span> ACCESS_GRANTED
+                  </span>
+</td>
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-2 group cursor-pointer" title="Click to copy hash">
+<span class="text-text-secondary group-hover:text-primary transition-colors">bb540c11ae98…740cc19f</span>
+<span class="material-symbols-outlined text-[16px] text-cool-gray group-hover:text-primary transition-colors">content_copy</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-space-sm bg-surface-container-low flex items-center justify-between">
+<span class="font-mono-data text-body-sm text-text-secondary px-space-md">Displaying latest 4 blocks of 4,821</span>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 rounded bg-surface-container hover:bg-surface-container-high font-label-sm text-label-sm text-on-surface transition-colors">Previous 50</button>
+<button class="px-3 py-1 rounded bg-surface-container hover:bg-surface-container-high font-label-sm text-label-sm text-on-surface transition-colors">Next 50</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: System Health, FHIR Endpoint Connectors, and Security Policies -->
+<div class="flex flex-col gap-space-sm mb-space-xl">
+<div class="px-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold">Section 03 // Infrastructure &amp; Interoperability</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">System Health, FHIR Endpoint Connectors &amp; Security Enforcements</h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-md">
+<!-- Column 1: System Telemetry & Load -->
+<div class="rounded-xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Host Cluster Health</span>
+<span class="px-2 py-0.5 rounded-full bg-health-green/10 text-health-green font-label-sm text-label-sm font-semibold">NOMINAL</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary mb-space-md">US-East-1 Distributed Node Quorum (3 Zones Active)</p>
+<div class="space-y-space-sm">
+<div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface mb-1">
+<span>Cryptographic Enclave Memory</span>
+<span class="font-mono-data text-text-secondary">42.4% / 128 GB</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 42.4%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface mb-1">
+<span>API Transaction Throughput</span>
+<span class="font-mono-data text-text-secondary">842 req/s</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 58%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface mb-1">
+<span>Replication Lag</span>
+<span class="font-mono-data text-health-green font-semibold">1.4 ms</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-health-green h-full rounded-full" style="width: 5%;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between">
+<span class="font-mono-data text-[12px] text-text-secondary">HSM HSM-Luna7: Operational</span>
+<span class="material-symbols-outlined text-health-green text-[18px]">lock</span>
+</div>
+</div>
+<!-- Column 2: FHIR Connectors & Interoperability -->
+<div class="rounded-xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-md text-label-md font-semibold text-on-surface">FHIR R4 Connectors</span>
+<span class="font-mono-data text-body-sm text-text-secondary">4 Endpoints Live</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary mb-space-md">HL7 FHIR RESTful Gateway &amp; SMART on FHIR Auth Profiles</p>
+<div class="space-y-space-xs">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-health-green"></span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Epic Systems (EHR Interop)</span>
+<span class="font-mono-data text-[11px] text-text-secondary">fhir.epic.corp/r4/v2</span>
+</div>
+</div>
+<span class="font-mono-data text-[11px] text-health-green font-semibold">200 OK</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-health-green"></span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Cerner Millennium Connector</span>
+<span class="font-mono-data text-[11px] text-text-secondary">api.cerner.org/open-fhir</span>
+</div>
+</div>
+<span class="font-mono-data text-[11px] text-health-green font-semibold">200 OK</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-health-green"></span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Allscripts CarePort Gateway</span>
+<span class="font-mono-data text-[11px] text-text-secondary">gateway.allscripts.com/fhir</span>
+</div>
+</div>
+<span class="font-mono-data text-[11px] text-health-green font-semibold">200 OK</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-secondary">Sync cycle: Every 15s</span>
+<button class="font-label-sm text-label-sm text-primary font-semibold hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">sync</span> Force Handshake
+            </button>
+</div>
+</div>
+<!-- Column 3: Active Security Policies & Compliance -->
+<div class="rounded-xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Security &amp; Policy Gates</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">ENFORCING</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary mb-space-md">Real-time governance controls applied across all sessions</p>
+<div class="space-y-space-sm">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">verified_user</span>
+<div>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface block">Zero-Trust PHI Boundary</span>
+<span class="font-body-sm text-body-sm text-text-secondary">Strict field-level asymmetric key derivation per consultation session.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">key_off</span>
+<div>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface block">Auto Consent Eviction</span>
+<span class="font-body-sm text-body-sm text-text-secondary">Tokens purge access automatically upon session idle timeout (15m limit).</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-tertiary-container text-[20px] mt-0.5">history_edu</span>
+<div>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface block">Immutable Proof Ledger</span>
+<span class="font-body-sm text-body-sm text-text-secondary">Blocks anchored into decentralized cryptographic proof storage hourly.</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container rounded-lg p-space-sm flex items-center justify-between">
+<span class="font-mono-data text-[12px] text-on-surface">Certificate Authority: Aegis Vault CA v4</span>
+<span class="font-label-sm text-label-sm text-health-green font-semibold">Valid 284d</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Toast Simulation -->
+<div class="fixed bottom-6 right-6 hidden bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded-xl shadow-xl flex items-center gap-space-sm z-50 transition-all" id="toast">
+<span class="material-symbols-outlined text-health-green text-[20px]">check_circle</span>
+<span class="font-body-md text-body-md" id="toast-text">Audit Proof Package Generated &amp; Signed</span>
+</div>
+<script>
+    (function() {
+      const exportBtn = document.getElementById('export-legal-btn');
+      const lockdownBtn = document.getElementById('lockdown-btn');
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toast-text');
+
+      function showToast(message) {
+        if (!toast) return;
+        toastText.textContent = message;
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 3200);
+      }
+
+      if (exportBtn) {
+        exportBtn.addEventListener('click', function() {
+          showToast('Legal Audit Proof #04821 downloaded with digital notary signature.');
+        });
+      }
+
+      if (lockdownBtn) {
+        lockdownBtn.addEventListener('click', function() {
+          const proceed = confirm('Initiate emergency quarantine on non-essential FHIR and patient share tokens?');
+          if (proceed) {
+            showToast('Emergency lockdown stance engaged. Alert dispatched to SecOps quorum.');
+          }
+        });
+      }
+    })();
+  </script>
+</div></main></div></body></html>

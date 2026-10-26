@@ -1,0 +1,369 @@
+{% extends "base.html" %}
+
+{% block title %}Document Operations Workspace - Registrar Triage | PHRMS{% endblock %}
+
+{% block content %}
+<div class="content-container" style="max-width: 1560px;">
+
+  <!-- Top SLA Triage Bar / Ticker -->
+  <div class="triage-ticker">
+    <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: var(--radius-full); background-color: var(--trust-teal-tint); color: var(--trust-teal); font-weight: 700; font-size: 12px;">
+        <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--health-green); display: inline-block;"></span>
+        OPERATIONS HUB • FR03 TRIAGE DESK
+      </div>
+      <div style="height: 16px; width: 1px; background-color: var(--border-color);"></div>
+      <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
+        <span class="material-symbols-outlined" style="font-size: 18px; color: var(--surgical-blue);">timer</span>
+        <strong>Queue SLA Target: &lt;45 Mins</strong>
+        <span style="color: var(--text-secondary);">(Strict Administrative Standard)</span>
+      </div>
+      <span class="badge badge-approved">
+        <span class="material-symbols-outlined" style="font-size: 14px;">verified</span> 100% On-Track
+      </span>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div style="width: 32px; height: 32px; border-radius: var(--radius-sm); background-color: #fff9db; color: #b78103; display: flex; align-items: center; justify-content: center;">
+          <span class="material-symbols-outlined" style="font-size: 18px;">pending_actions</span>
+        </div>
+        <div style="line-height: 1.2;">
+          <span style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; display: block;">{{ pending_queue|length }} Pending</span>
+          <span style="font-size: 11px; color: var(--text-secondary);">Requires Audit</span>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div style="width: 32px; height: 32px; border-radius: var(--radius-sm); background-color: var(--health-green-tint); color: var(--health-green); display: flex; align-items: center; justify-content: center;">
+          <span class="material-symbols-outlined" style="font-size: 18px;">check_circle</span>
+        </div>
+        <div style="line-height: 1.2;">
+          <span style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; display: block;">{{ recent_reviews|length }} Actioned</span>
+          <span style="font-size: 11px; color: var(--text-secondary);">Audit History</span>
+        </div>
+      </div>
+
+      <!-- Operator Badge -->
+      <div style="display: flex; align-items: center; gap: 10px; border-left: 1px solid var(--border-color); padding-left: 16px;">
+        <div style="width: 36px; height: 36px; border-radius: var(--radius-full); background-color: #a36410; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700;">
+          {{ reviewer.full_name[:2].upper() }}
+        </div>
+        <div style="line-height: 1.2;">
+          <strong style="font-size: 13px; display: block;">{{ reviewer.full_name }}</strong>
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);">{{ reviewer.staff_id or 'REG-LK-88410' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Workspace Grid -->
+  <div style="display: grid; grid-template-columns: 360px 1fr; gap: 24px; align-items: start;">
+
+    <!-- LEFT COLUMN: Pending Submissions Queue -->
+    <div>
+      <div class="phrms-card" style="padding: 18px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="material-symbols-outlined" style="color: var(--surgical-blue);">inbox</span>
+            <h3 style="margin: 0; font-size: 1.15rem;">Review Intake Queue</h3>
+          </div>
+          <span class="badge badge-pending">{{ pending_queue|length }} In Queue</span>
+        </div>
+        <p style="font-size: 12.5px; color: var(--text-secondary); margin: 0 0 14px;">
+          Inspect patient uploads for legibility, date concordance, and facility accreditation.
+        </p>
+
+        <!-- Queue Item List -->
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          {% if pending_queue %}
+            {% for item in pending_queue %}
+            {% set is_active = (active_record and active_record.id == item.id) %}
+            <a href="{{ url_for('reviewer.workspace', select=item.id) }}" 
+               style="text-decoration: none; padding: 14px; border-radius: var(--radius-md); border: 1px solid {% if is_active %}var(--trust-teal){% else %}var(--border-color){% endif %}; background-color: {% if is_active %}var(--trust-teal-tint){% else %}var(--clean-white){% endif %}; display: flex; flex-direction: column; gap: 6px; transition: all 0.15s ease;"
+               class="queue-item-card">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="badge badge-category" style="font-size: 11px;">{{ item.category }}</span>
+                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">
+                  {{ item.submitted_at.strftime('%H:%M') }}
+                </span>
+              </div>
+              <strong style="font-size: 13.5px; color: var(--text-primary); margin-top: 2px;">{{ item.title }}</strong>
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-secondary); margin-top: 2px;">
+                <span>Patient: <strong>{{ item.patient.full_name }}</strong></span>
+                <span style="color: var(--trust-teal); font-weight: 600;">
+                  {% if is_active %}Active &rarr;{% else %}Inspect{% endif %}
+                </span>
+              </div>
+            </a>
+            {% endfor %}
+          {% else %}
+            <div style="text-align: center; padding: 24px 12px; color: var(--text-secondary); font-size: 13px;">
+              <span class="material-symbols-outlined" style="font-size: 32px; color: var(--health-green);">task_alt</span>
+              <p style="margin: 8px 0 0;">Queue clear! All submitted documents have been administratively processed.</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Quick Registrar Protocol Guidance -->
+      <div class="phrms-card" style="background-color: var(--surface-low); padding: 18px;">
+        <div style="display: flex; align-items: center; gap: 8px; color: var(--trust-teal); margin-bottom: 6px;">
+          <span class="material-symbols-outlined" style="font-size: 18px;">gavel</span>
+          <strong style="font-size: 13px;">Audit Protocol Note</strong>
+        </div>
+        <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; margin: 0;">
+          Ensure institutional accreditation seal is visible. Discrepancies in dates or unreadable ECG grids must be marked for <strong>Correction Requested</strong> rather than immediate summary rejection.
+        </p>
+      </div>
+
+      <!-- Recent Decisions History -->
+      {% if recent_reviews %}
+      <div class="phrms-card" style="padding: 18px;">
+        <h4 style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 12px; color: var(--text-secondary);">
+          Recent Review Outcomes
+        </h4>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 12.5px;">
+          {% for r in recent_reviews[:5] %}
+          <div style="padding: 8px 10px; border-radius: var(--radius-sm); background: var(--surface-low); border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+            <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 200px;">
+              <strong>{{ r.title }}</strong>
+            </div>
+            {% if r.status == 'APPROVED' %}
+              <span class="badge badge-approved" style="font-size: 10.5px;">Approved</span>
+            {% elif r.status == 'CORRECTION_REQUIRED' %}
+              <span class="badge badge-correction" style="font-size: 10.5px;">Correction</span>
+            {% else %}
+              <span class="badge badge-rejected" style="font-size: 10.5px;">Rejected</span>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- RIGHT COLUMN: Double-Blind Document Inspection & Decision Desk -->
+    <div>
+      {% if active_record %}
+      <!-- 1. Patient-Claimed Metadata Header Panel -->
+      <div class="phrms-card" style="margin-bottom: 18px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="badge badge-category" style="font-family: var(--font-mono); font-weight: 700; color: var(--trust-teal);">
+              AUDIT-SESSION #0942-A
+            </span>
+            <span style="font-size: 13px; color: var(--text-secondary);">Patient-Claimed Ingestion Data</span>
+          </div>
+          <span style="font-size: 12px; color: var(--text-secondary); font-family: var(--font-mono);">
+            Record ID #{{ active_record.id }}
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; padding: 14px 18px; background-color: var(--surface-low); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <div>
+            <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-secondary); display: block;">Document Title</span>
+            <strong style="font-size: 13.5px; color: var(--text-primary); display: block; margin-top: 2px;">{{ active_record.title }}</strong>
+          </div>
+          <div>
+            <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-secondary); display: block;">Clinical Category</span>
+            <span class="badge badge-category" style="margin-top: 3px;">{{ active_record.category }}</span>
+          </div>
+          <div>
+            <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-secondary); display: block;">Date of Event</span>
+            <strong style="font-size: 13.5px; font-family: var(--font-mono); color: var(--text-primary); display: block; margin-top: 2px;">{{ active_record.record_date }}</strong>
+          </div>
+          <div>
+            <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-secondary); display: block;">Healthcare Provider</span>
+            <strong style="font-size: 13.5px; color: var(--text-primary); display: block; margin-top: 2px;">{{ active_record.provider_name }}</strong>
+          </div>
+          <div>
+            <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-secondary); display: block;">Patient</span>
+            <strong style="font-size: 13.5px; color: var(--surgical-blue); display: block; margin-top: 2px;">{{ active_record.patient.full_name }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Realistic Document Inspection Viewport -->
+      <div class="phrms-card" style="padding: 0; overflow: hidden; margin-bottom: 20px;">
+        <!-- Viewport Toolbar -->
+        <div style="background-color: var(--clean-white); padding: 10px 18px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="material-symbols-outlined" style="color: var(--surgical-blue); font-size: 20px;">document_scanner</span>
+            <strong style="font-size: 13.5px;">Inspection Viewport</strong>
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary);">({{ active_record.file_name or 'CLINICAL_RECORD.PDF' }})</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <button type="button" class="btn btn-outline btn-sm" id="zoom-out" title="Zoom Out">
+              <span class="material-symbols-outlined" style="font-size: 16px;">zoom_out</span>
+            </button>
+            <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 600; padding: 0 6px;" id="zoom-level">100%</span>
+            <button type="button" class="btn btn-outline btn-sm" id="zoom-in" title="Zoom In">
+              <span class="material-symbols-outlined" style="font-size: 16px;">zoom_in</span>
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" id="rotate-btn" title="Rotate 90 deg">
+              <span class="material-symbols-outlined" style="font-size: 16px;">rotate_right</span>
+            </button>
+            <a href="{{ url_for('documents.preview_document', record_id=active_record.id) }}" target="_blank" class="btn btn-outline btn-sm" title="Open Full Screen">
+              <span class="material-symbols-outlined" style="font-size: 16px;">fullscreen</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Document Canvas -->
+        <div class="inspection-viewport">
+          <div class="document-sheet-mock" id="document-canvas" style="transition: transform 0.2s ease; transform-origin: top center;">
+            
+            <!-- Hospital Letterhead -->
+            <div class="hospital-letterhead">
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background-color: var(--surgical-blue); color: #fff; font-size: 20px; font-weight: 800; display: flex; align-items: center; justify-content: center;">
+                  {{ active_record.provider_name[:3].upper() }}
+                </div>
+                <div>
+                  <h3 style="font-size: 1.15rem; margin: 0; text-transform: uppercase; letter-spacing: 0.02em;">{{ active_record.provider_name }}</h3>
+                  <span style="font-size: 11.5px; color: var(--text-secondary); display: block;">Accreditation: SLMC-FAC-2024-91 • Colombo Sri Lanka</span>
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <span class="badge badge-rejected" style="font-size: 10px; font-weight: 800; letter-spacing: 0.05em;">CONFIDENTIAL MEDICAL RECORD</span>
+                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); display: block; margin-top: 3px;">
+                  REF: SL-DOC-{{ active_record.id }}-2026
+                </span>
+              </div>
+            </div>
+
+            <!-- Patient & Examination Meta Block -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 10px 14px; background-color: var(--surface-low); border-radius: var(--radius-sm); margin-bottom: 18px; font-size: 12.5px;">
+              <div>
+                <span style="color: var(--text-secondary); display: block; font-size: 11px;">PATIENT NAME &amp; IDENTIFICATION</span>
+                <strong>{{ active_record.patient.full_name }}</strong> (NIC: {{ active_record.patient.national_id or '199182302481' }})
+              </div>
+              <div style="text-align: right;">
+                <span style="color: var(--text-secondary); display: block; font-size: 11px;">EXAMINATION EVENT DATE</span>
+                <strong style="font-family: var(--font-mono);">{{ active_record.record_date.strftime('%d-%b-%Y') }}</strong>
+              </div>
+            </div>
+
+            <!-- Clinical Impression / Findings -->
+            <div style="margin-bottom: 20px;">
+              <span style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); display: block; margin-bottom: 6px;">
+                Clinical Presentation &amp; Findings
+              </span>
+              <p style="font-size: 13.5px; line-height: 1.6; color: var(--text-primary); margin: 0;">
+                {{ active_record.clinical_summary }}
+              </p>
+            </div>
+
+            <!-- Waveform or Lab Data Graphic -->
+            <div style="margin-bottom: 24px; padding: 12px; background-color: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+              <div style="display: flex; justify-content: space-between; font-size: 11px; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 8px;">
+                <span>CALIBRATION: 25mm/s • 10mm/mV</span>
+                <span>RESTING LEAD II TRACE</span>
+              </div>
+              <!-- SVG Waveform -->
+              <svg style="width: 100%; height: 50px; color: var(--aid-red);" viewBox="0 0 600 50" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" preserveAspectRatio="none">
+                <path d="M 0,25 L 40,25 L 45,23 L 50,27 L 55,25 L 80,25 L 85,21 L 90,25 L 100,25 L 105,28 L 110,4 L 115,46 L 120,25 L 130,25 L 140,20 L 150,25 L 190,25 L 195,23 L 200,27 L 205,25 L 230,25 L 235,21 L 240,25 L 250,25 L 255,28 L 260,4 L 265,46 L 270,25 L 280,25 L 290,20 L 300,25 L 340,25 L 345,23 L 350,27 L 355,25 L 380,25 L 385,21 L 390,25 L 400,25 L 405,28 L 410,4 L 415,46 L 420,25 L 430,25 L 440,20 L 450,25 L 490,25 L 495,23 L 500,27 L 505,25 L 530,25 L 535,21 L 540,25 L 550,25 L 555,28 L 560,4 L 565,46 L 570,25 L 580,25 L 590,20 L 600,25"></path>
+              </svg>
+            </div>
+
+            <!-- Signature & Seal -->
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 14px; font-size: 11.5px;">
+              <div>
+                <span style="font-family: var(--font-mono); color: var(--text-muted); display: block;">Digital Digest: SHA256-8F4A29CC</span>
+                <span style="color: var(--health-green); font-weight: 600;">Cryptographically Attested Gateway File</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <div style="text-align: right;">
+                  <strong style="display: block; font-family: serif; font-size: 14px; color: var(--text-primary);">Dr. Susantha Jayasuriya</strong>
+                  <span style="color: var(--text-secondary);">Chief Pathologist / Registrar</span>
+                </div>
+                <div style="width: 54px; height: 54px; border: 2px dashed var(--surgical-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; transform: rotate(-10deg); color: var(--surgical-blue); font-size: 8px; font-weight: 800; text-align: center; padding: 4px;">
+                  VERIFIED CLINICAL SEAL
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Bottom Administrative Decision Desk -->
+      <div class="phrms-card">
+        <form method="POST" action="{{ url_for('reviewer.decide_record', record_id=active_record.id) }}">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <div>
+              <h3 style="margin: 0; font-size: 1.15rem;">Administrative Verification Checklist</h3>
+              <p style="margin: 2px 0 0; font-size: 12.5px; color: var(--text-secondary);">
+                Registrar must affirm all 3 statutory criteria before publishing to official patient timeline.
+              </p>
+            </div>
+            <span class="badge badge-approved">3 Requirements</span>
+          </div>
+
+          <!-- 3 Affirmation Checkboxes -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 18px;">
+            <label style="padding: 10px 14px; background: var(--surface-low); border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+              <input type="checkbox" checked required style="margin-top: 3px; accent-color: var(--health-green);" />
+              <div style="font-size: 12.5px;">
+                <strong style="display: block; color: var(--text-primary);">1. Legible &amp; Uncorrupted</strong>
+                <span style="color: var(--text-secondary); font-size: 11.5px;">All text, values, and calibration grids clear.</span>
+              </div>
+            </label>
+
+            <label style="padding: 10px 14px; background: var(--surface-low); border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+              <input type="checkbox" checked required style="margin-top: 3px; accent-color: var(--health-green);" />
+              <div style="font-size: 12.5px;">
+                <strong style="display: block; color: var(--text-primary);">2. Date &amp; Facility Match</strong>
+                <span style="color: var(--text-secondary); font-size: 11.5px;">Document header congruent with entered metadata.</span>
+              </div>
+            </label>
+
+            <label style="padding: 10px 14px; background: var(--surface-low); border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+              <input type="checkbox" checked required style="margin-top: 3px; accent-color: var(--health-green);" />
+              <div style="font-size: 12.5px;">
+                <strong style="display: block; color: var(--text-primary);">3. Taxonomy Validated</strong>
+                <span style="color: var(--text-secondary); font-size: 11.5px;">Document properly categorized per clinical standards.</span>
+              </div>
+            </label>
+          </div>
+
+          <!-- Reviewer Remarks / Instructions Input -->
+          <div class="form-group" style="margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <label class="form-label" for="review_notes" style="margin: 0;">Reviewer Notes / Correction Instructions</label>
+              <span style="font-size: 11.5px; color: var(--text-secondary);">Mandatory for correction requests &amp; rejections</span>
+            </div>
+            <textarea id="review_notes" name="review_notes" class="form-control" rows="2" placeholder="Enter administrative remarks or specific patient instructions (e.g. Please re-upload clearer scan with visible hospital stamp)..."></textarea>
+          </div>
+
+          <!-- 3 Semantic Action Buttons -->
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 18px; flex-wrap: wrap; gap: 12px;">
+            <button type="submit" name="decision" value="REJECTED" class="btn btn-red" onclick="return confirm('Confirm rejection of this medical document submission?');">
+              <span class="material-symbols-outlined">cancel</span> Reject Submission
+            </button>
+
+            <div style="display: flex; gap: 12px;">
+              <button type="submit" name="decision" value="CORRECTION_REQUIRED" class="btn btn-surgical">
+                <span class="material-symbols-outlined">contact_support</span> Request Correction
+              </button>
+
+              <button type="submit" name="decision" value="APPROVED" class="btn btn-green">
+                <span class="material-symbols-outlined">published_with_changes</span> Approve &amp; Publish to Timeline
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      {% else %}
+      <div class="phrms-card" style="text-align: center; padding: 48px 24px;">
+        <span class="material-symbols-outlined" style="font-size: 48px; color: var(--cool-gray);">task_alt</span>
+        <h3 style="margin: 12px 0 6px;">No Submissions Currently in Review</h3>
+        <p style="color: var(--text-secondary); max-width: 480px; margin: 0 auto;">
+          The operations queue has zero pending submissions. When a patient uploads a medical report, it will appear here for inspection.
+        </p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

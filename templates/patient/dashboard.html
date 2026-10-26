@@ -1,0 +1,521 @@
+{% extends "base.html" %}
+
+{% block title %}Patient Portal - {{ patient.full_name }} | PHRMS{% endblock %}
+
+{% block content %}
+<div class="content-container">
+
+  <!-- 1. Critical Known Allergies Callout Banner (Aid Red) -->
+  {% if patient.known_allergies %}
+  <div class="allergy-alert-banner">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div class="allergy-icon-box">
+        <span class="material-symbols-outlined" style="font-size: 26px;">warning</span>
+      </div>
+      <div>
+        <div class="allergy-header-tag">
+          <span class="material-symbols-outlined" style="font-size: 15px;">health_and_safety</span>
+          Critical Clinical Alert • ICD-10 Z88.0
+        </div>
+        <div class="allergy-title">
+          KNOWN ALLERGIES: {{ patient.known_allergies }}
+        </div>
+        <p class="allergy-subtext">
+          Broadcast safety lock active — Automatically flagged to all authorized attending clinicians before prescription or consultation.
+        </p>
+      </div>
+    </div>
+    <span class="badge" style="background-color: var(--clean-white); color: var(--aid-red); font-family: var(--font-mono); font-weight: 700; border: 1px solid var(--aid-red);">
+      SEEK CLINICAL CONFIRMATION
+    </span>
+  </div>
+  {% endif %}
+
+  <!-- 2. Patient Context Header Strip -->
+  <div class="phrms-card" style="margin-bottom: 24px; padding: 20px 24px;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+      <div style="display: flex; align-items: center; gap: 18px;">
+        <div style="width: 60px; height: 60px; border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--surgical-blue), var(--trust-teal)); color: #fff; font-size: 22px; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm);">
+          {{ patient.full_name[:2].upper() }}
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <h1 style="font-size: 1.5rem; margin: 0; font-weight: 800;">{{ patient.full_name }}</h1>
+            <span class="badge badge-category" style="font-family: var(--font-mono);">
+              NIC: {{ patient.national_id or '199182302481' }}
+            </span>
+            <span class="badge badge-approved">
+              <span class="material-symbols-outlined" style="font-size: 13px;">check_circle</span> Active PHR
+            </span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 6px; font-size: 13px; color: var(--text-secondary);">
+            <span><strong>Blood Group:</strong> <span style="color: var(--aid-red); font-weight: 700;">{{ patient.blood_group or 'O+' }}</span></span>
+            <span>•</span>
+            <span><strong>DOB:</strong> {{ patient.date_of_birth or '1991-11-12' }}</span>
+            <span>•</span>
+            <span><strong>Primary Hospital:</strong> {{ patient.primary_facility or 'Asiri Central Hospital Colombo' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+        <a href="{{ url_for('patient.audit_log') }}" class="btn btn-outline btn-sm" title="View Patient Transparency Audit Log">
+          <span class="material-symbols-outlined">shield</span> Transparency Ledger
+        </a>
+        <button type="button" class="btn btn-surgical btn-sm" onclick="document.getElementById('upload-section').scrollIntoView({behavior:'smooth'})">
+          <span class="material-symbols-outlined">upload_file</span> New Upload
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. KPI Metrics Bar -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div>
+        <span class="kpi-label">Verified Records</span>
+        <div class="kpi-value">{{ approved_records|length }}</div>
+        <span style="font-size: 12px; color: var(--health-green); font-weight: 600;">
+          <span class="material-symbols-outlined" style="font-size: 14px;">verified</span> Published on Timeline
+        </span>
+      </div>
+      <div class="kpi-icon-box kpi-icon-green">
+        <span class="material-symbols-outlined" style="font-size: 26px;">check_circle</span>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div>
+        <span class="kpi-label">Operations Review</span>
+        <div class="kpi-value">{{ pending_records|length }}</div>
+        <span style="font-size: 12px; color: #b78103; font-weight: 600;">
+          <span class="material-symbols-outlined" style="font-size: 14px;">hourglass_top</span> In Registrar Triage
+        </span>
+      </div>
+      <div class="kpi-icon-box kpi-icon-amber">
+        <span class="material-symbols-outlined" style="font-size: 26px;">pending</span>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div>
+        <span class="kpi-label">Needs Correction</span>
+        <div class="kpi-value" style="color: var(--surgical-blue);">{{ correction_records|length }}</div>
+        <span style="font-size: 12px; color: var(--surgical-blue); font-weight: 600;">
+          <span class="material-symbols-outlined" style="font-size: 14px;">edit_note</span> Patient Action Needed
+        </span>
+      </div>
+      <div class="kpi-icon-box kpi-icon-blue">
+        <span class="material-symbols-outlined" style="font-size: 26px;">published_with_changes</span>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div>
+        <span class="kpi-label">Active Doctor Grants</span>
+        <div class="kpi-value" style="color: var(--trust-teal);">{{ active_doctor_grants|length }}</div>
+        <span style="font-size: 12px; color: var(--trust-teal); font-weight: 600;">
+          <span class="material-symbols-outlined" style="font-size: 14px;">lock_open</span> Authorized Specialists
+        </span>
+      </div>
+      <div class="kpi-icon-box kpi-icon-teal">
+        <span class="material-symbols-outlined" style="font-size: 26px;">stethoscope</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Needs Correction Notice (If any) -->
+  {% if correction_records %}
+  <div class="phrms-card" style="border-left: 4px solid var(--surgical-blue); background-color: var(--surgical-blue-subtle);">
+    <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span class="material-symbols-outlined" style="color: var(--surgical-blue);">priority_high</span>
+          <strong style="color: var(--surgical-blue); font-size: 14px;">Document Correction Requested by Registrar:</strong>
+        </div>
+        {% for cr in correction_records %}
+        <div style="margin-top: 8px; padding: 12px; background: var(--clean-white); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong style="font-size: 14px;">{{ cr.title }}</strong>
+            <span class="badge badge-correction">Correction Requested</span>
+          </div>
+          <p style="margin: 6px 0; font-size: 13px; color: var(--text-secondary);">
+            <strong>Registrar Remark:</strong> <em>"{{ cr.review_notes }}"</em>
+          </p>
+          <button type="button" class="btn btn-surgical btn-sm" onclick="openResubmitModal('{{ cr.id }}', '{{ cr.title }}', '{{ cr.category }}', '{{ cr.provider_name }}', '{{ cr.record_date.isoformat() }}', '{{ cr.clinical_summary }}')">
+            <span class="material-symbols-outlined">edit</span> Fix &amp; Resubmit Document
+          </button>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- 4. Main Two-Column Grid -->
+  <div style="display: grid; grid-template-columns: 7fr 5fr; gap: 28px; align-items: start;">
+    
+    <!-- LEFT COLUMN: Longitudinal Chronological Timeline & Summary Builder -->
+    <div>
+      <div class="phrms-card">
+        <div class="card-header-flex">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background-color: var(--surgical-blue);"></span>
+              <h2 style="margin: 0; font-size: 1.25rem;">Longitudinal Health Timeline</h2>
+            </div>
+            <p class="card-header-subtitle">Verified, immutable chronological clinical history (FR05)</p>
+          </div>
+
+          <!-- Summary Builder Trigger Button -->
+          <button type="button" class="btn btn-teal btn-sm" id="packetCounterBtn" onclick="openModal('summaryBuilderModal')">
+            <span class="material-symbols-outlined">assignment_turned_in</span>
+            Send to Summary (<span id="selectedCount">0</span>)
+          </button>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 18px; border-bottom: 1px solid var(--border-color);">
+          <span style="font-size: 12.5px; font-weight: 600; color: var(--text-secondary); align-self: center;">Filter:</span>
+          <button type="button" class="btn btn-surgical btn-sm filter-pill-btn" data-category="ALL">All ({{ approved_records|length }})</button>
+          <button type="button" class="btn btn-outline btn-sm filter-pill-btn" data-category="Lab Report">Lab Reports</button>
+          <button type="button" class="btn btn-outline btn-sm filter-pill-btn" data-category="Prescription">Prescriptions</button>
+          <button type="button" class="btn btn-outline btn-sm filter-pill-btn" data-category="Consultation Note">Consultations</button>
+          <button type="button" class="btn btn-outline btn-sm filter-pill-btn" data-category="Imaging / Scan">Imaging / Scans</button>
+        </div>
+
+        <!-- Timeline Items -->
+        <div class="timeline-wrapper">
+          {% if approved_records %}
+            {% for record in approved_records %}
+            <div class="timeline-item" data-category="{{ record.category }}">
+              <div class="timeline-marker verified">
+                <span class="material-symbols-outlined" style="font-size: 16px;">check</span>
+              </div>
+              <div class="timeline-card">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px;">
+                  <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                    <span class="timeline-date-chip">{{ record.record_date.strftime('%b %d, %Y') }}</span>
+                    <span class="badge badge-category">{{ record.category }}</span>
+                    <span class="badge badge-approved">
+                      <span class="material-symbols-outlined" style="font-size: 13px;">verified</span> Verified
+                    </span>
+                  </div>
+
+                  <!-- Checkbox to select for Consultation Summary -->
+                  <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--trust-teal); cursor: pointer;" title="Select to include in Consultation Briefing Summary">
+                    <input type="checkbox" class="record-selector" value="{{ record.id }}" style="width: 17px; height: 17px; accent-color: var(--trust-teal); cursor: pointer;" />
+                    Include in Summary
+                  </label>
+                </div>
+
+                <h3 style="font-size: 1.1rem; margin: 6px 0 4px; font-weight: 700;">{{ record.title }}</h3>
+                <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 10px; display: flex; align-items: center; gap: 6px;">
+                  <span class="material-symbols-outlined" style="font-size: 16px; color: var(--surgical-blue);">local_hospital</span>
+                  {{ record.provider_name }}
+                </p>
+
+                <div style="background-color: var(--surface-low); padding: 12px 14px; border-radius: var(--radius-md); font-size: 13.5px; color: var(--text-primary); margin-bottom: 12px; border: 1px solid var(--border-color);">
+                  {{ record.clinical_summary }}
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 10px;">
+                  <span>
+                    <span class="material-symbols-outlined" style="font-size: 14px; color: var(--health-green);">verified_user</span>
+                    Registrar Approved • {{ record.file_name or 'Document Attached' }}
+                  </span>
+                  <a href="{{ url_for('documents.preview_document', record_id=record.id) }}" class="btn btn-outline btn-sm">
+                    <span class="material-symbols-outlined" style="font-size: 15px;">visibility</span> Inspect Document
+                  </a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          {% else %}
+            <div style="text-align: center; padding: 36px 20px; color: var(--text-secondary);">
+              <span class="material-symbols-outlined" style="font-size: 40px; color: var(--cool-gray);">folder_open</span>
+              <p style="margin: 10px 0 0;">No approved records on your timeline yet. Submissions currently in review will appear here once verified.</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Existing Generated Consultation Summaries -->
+      {% if summaries %}
+      <div class="phrms-card">
+        <div class="card-header-flex">
+          <div>
+            <h3 style="margin: 0; font-size: 1.15rem;">Compiled Consultation Summaries (FR08)</h3>
+            <p class="card-header-subtitle">Patient-curated appointment briefings ready for physician review</p>
+          </div>
+          <span class="badge badge-category">{{ summaries|length }} Generated</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          {% for s in summaries %}
+          <div style="padding: 14px 18px; background: var(--surface-low); border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; gap: 14px;">
+            <div>
+              <strong style="font-size: 14px; color: var(--text-primary); display: block;">{{ s.title }}</strong>
+              <span style="font-size: 12px; color: var(--text-secondary);">
+                Reason: <em>"{{ s.chief_complaint[:60] }}{% if s.chief_complaint|length > 60 %}...{% endif %}"</em>
+              </span>
+              <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); margin-top: 2px;">
+                Compiled on {{ s.created_at.strftime('%Y-%m-%d %H:%M') }}
+              </div>
+            </div>
+            <a href="{{ url_for('summary.view_summary', summary_id=s.id) }}" class="btn btn-teal btn-sm">
+              <span class="material-symbols-outlined">visibility</span> View &amp; Print Sheet
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- RIGHT COLUMN: Upload Medical Document Form & Doctor Access Control -->
+    <div>
+      <!-- Upload Document Form -->
+      <div class="phrms-card" id="upload-section">
+        <div class="card-header-flex">
+          <div class="card-header-title">
+            <div style="width: 34px; height: 34px; border-radius: var(--radius-sm); background-color: var(--surgical-blue-tint); color: var(--surgical-blue); display: flex; align-items: center; justify-content: center;">
+              <span class="material-symbols-outlined">upload_file</span>
+            </div>
+            <div>
+              <h2 style="font-size: 1.15rem; margin: 0;">Upload Medical Document</h2>
+              <p class="card-header-subtitle">Submitted to registrar administrative pipeline (FR02)</p>
+            </div>
+          </div>
+          <span class="badge badge-category">FR02 / FR03</span>
+        </div>
+
+        <form method="POST" action="{{ url_for('patient.upload_record') }}" enctype="multipart/form-data">
+          <div class="form-group">
+            <label class="form-label" for="title">Document / Report Title <span class="required-star">*</span></label>
+            <input type="text" id="title" name="title" class="form-control" placeholder="e.g., Fasting Lipid Profile &amp; HbA1c" required />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="form-group">
+              <label class="form-label" for="category">Category <span class="required-star">*</span></label>
+              <select id="category" name="category" class="form-select" required>
+                <option value="Lab Report">Lab Report</option>
+                <option value="Prescription">Prescription</option>
+                <option value="Consultation Note">Consultation Note</option>
+                <option value="Imaging / Scan">Imaging / Scan</option>
+                <option value="Vaccination / Vitals">Vaccination / Vitals</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="record_date">Event Date <span class="required-star">*</span></label>
+              <input type="date" id="record_date" name="record_date" class="form-control" required value="2026-10-26" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="provider_name">Healthcare Provider / Clinic <span class="required-star">*</span></label>
+            <input type="text" id="provider_name" name="provider_name" class="form-control" placeholder="e.g., Asiri Central Hospital Laboratory" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="clinical_summary">Clinical Summary / Key Metrics</label>
+            <textarea id="clinical_summary" name="clinical_summary" class="form-control" rows="2" placeholder="Include doctor comments, findings, or lab values..."></textarea>
+          </div>
+
+          <!-- Drag and Drop Zone -->
+          <div class="form-group">
+            <label class="form-label">Attach Clinical File</label>
+            <div class="dropzone-container" onclick="document.getElementById('file').click()">
+              <div class="dropzone-icon">
+                <span class="material-symbols-outlined" style="font-size: 26px;">cloud_upload</span>
+              </div>
+              <strong style="display: block; font-size: 13.5px; color: var(--text-primary);">
+                Click to browse or drop file here
+              </strong>
+              <span style="font-size: 12px; color: var(--text-secondary); display: block; margin-top: 4px;">
+                Supported: PDF, PNG, JPG, DICOM (Max 25MB)
+              </span>
+              <input type="file" id="file" name="file" style="display: none;" onchange="document.getElementById('fileNamePreview').textContent = this.files[0]?.name || ''" />
+              <div id="fileNamePreview" style="margin-top: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--surgical-blue); font-weight: 600;"></div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-surgical" style="width: 100%; padding: 11px;">
+            <span class="material-symbols-outlined">send_and_archive</span>
+            Submit for Operations Review
+          </button>
+        </form>
+      </div>
+
+      <!-- Active Doctor Sharing & Access Manager (FR06) -->
+      <div class="phrms-card">
+        <div class="card-header-flex">
+          <div class="card-header-title">
+            <div style="width: 34px; height: 34px; border-radius: var(--radius-sm); background-color: var(--trust-teal-tint); color: var(--trust-teal); display: flex; align-items: center; justify-content: center;">
+              <span class="material-symbols-outlined">share_location</span>
+            </div>
+            <div>
+              <h2 style="font-size: 1.15rem; margin: 0;">Doctor Access Control</h2>
+              <p class="card-header-subtitle">Patient-controlled authorization matrix (FR06)</p>
+            </div>
+          </div>
+          <span class="badge badge-category">FR06 Gated</span>
+        </div>
+
+        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+          Only doctors you grant active permissions to can view your approved records and consultation summaries. Revoking immediately cuts off their access.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          {% for doc in all_doctors %}
+          {% set is_granted = (doc.id in granted_doctor_ids) %}
+          <div style="padding: 12px 14px; background-color: var(--surface-low); border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 36px; height: 36px; border-radius: var(--radius-full); background-color: var(--trust-teal-tint); color: var(--trust-teal); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700;">
+                {{ doc.full_name[:2].upper() }}
+              </div>
+              <div>
+                <strong style="font-size: 13.5px; display: block; color: var(--text-primary);">{{ doc.full_name }}</strong>
+                <span style="font-size: 12px; color: var(--text-secondary);">{{ doc.specialization or 'Medical Officer' }}</span>
+                <span style="font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); display: block;">{{ doc.slmc_reg_no or 'SLMC Registered' }}</span>
+              </div>
+            </div>
+
+            <form method="POST" action="{{ url_for('patient.toggle_doctor_access') }}">
+              <input type="hidden" name="doctor_id" value="{{ doc.id }}" />
+              {% if is_granted %}
+                <input type="hidden" name="action" value="revoke" />
+                <button type="submit" class="btn btn-red btn-sm" title="Revoke access immediately">
+                  <span class="material-symbols-outlined" style="font-size: 15px;">lock</span> Revoke
+                </button>
+              {% else %}
+                <input type="hidden" name="action" value="grant" />
+                <button type="submit" class="btn btn-green btn-sm" title="Grant access to this doctor">
+                  <span class="material-symbols-outlined" style="font-size: 15px;">lock_open</span> Grant Access
+                </button>
+              {% endif %}
+            </form>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 1: Consultation Summary Builder (FR08) -->
+<div class="modal-backdrop" id="summaryBuilderModal" style="display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; padding: 20px;">
+  <div style="background: #ffffff; border-radius: var(--radius-xl); max-width: 600px; width: 100%; padding: 28px; box-shadow: var(--shadow-sheet); animation: slideDown 0.2s ease-out;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="material-symbols-outlined" style="color: var(--trust-teal); font-size: 26px;">assignment_turned_in</span>
+        <h3 style="margin: 0; font-size: 1.25rem;">Compile Consultation-Ready Summary</h3>
+      </div>
+      <button type="button" data-close-modal style="background: none; border: none; font-size: 22px; cursor: pointer; color: var(--text-secondary);">&times;</button>
+    </div>
+
+    <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 20px;">
+      This creates a structured clinical briefing sheet combining your selected timeline records, chief complaint, and vital allergy warnings for your consulting physician.
+    </p>
+
+    <form method="POST" action="{{ url_for('patient.create_summary') }}" id="summaryForm">
+      <div class="form-group">
+        <label class="form-label" for="sum_title">Summary Title <span class="required-star">*</span></label>
+        <input type="text" id="sum_title" name="title" class="form-control" placeholder="e.g., Pre-Consultation Summary: Cardiology Review" required value="Pre-Consultation Summary: Cardiology Follow-Up" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="sum_complaint">Reason for Visit / Chief Complaint <span class="required-star">*</span></label>
+        <textarea id="sum_complaint" name="chief_complaint" class="form-control" rows="3" placeholder="Describe symptoms, questions for the doctor, or purpose of consultation..." required>Experiencing occasional palpitations after new lipid medication; bringing recent HbA1c, Lipid Profile, and ECG for review.</textarea>
+      </div>
+
+      <!-- Hidden container to collect checked record IDs -->
+      <div id="hiddenRecordInputs"></div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px;">
+        <button type="button" class="btn btn-outline" data-close-modal>Cancel</button>
+        <button type="submit" class="btn btn-teal" onclick="populateSummarySelectedRecords()">
+          <span class="material-symbols-outlined">description</span>
+          Generate &amp; View Sheet
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal 2: Resubmit Document Modal (FR03 / FR04) -->
+<div class="modal-backdrop" id="resubmitRecordModal" style="display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; padding: 20px;">
+  <div style="background: #ffffff; border-radius: var(--radius-xl); max-width: 600px; width: 100%; padding: 28px; box-shadow: var(--shadow-sheet);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="material-symbols-outlined" style="color: var(--surgical-blue); font-size: 26px;">edit_note</span>
+        <h3 style="margin: 0; font-size: 1.25rem;">Address Feedback &amp; Resubmit</h3>
+      </div>
+      <button type="button" data-close-modal style="background: none; border: none; font-size: 22px; cursor: pointer; color: var(--text-secondary);">&times;</button>
+    </div>
+
+    <form method="POST" action="" id="resubmitForm" enctype="multipart/form-data">
+      <div class="form-group">
+        <label class="form-label" for="resubmit_title">Document Title</label>
+        <input type="text" id="resubmit_title" name="title" class="form-control" required />
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="form-group">
+          <label class="form-label" for="resubmit_category">Category</label>
+          <select id="resubmit_category" name="category" class="form-select" required>
+            <option value="Lab Report">Lab Report</option>
+            <option value="Prescription">Prescription</option>
+            <option value="Consultation Note">Consultation Note</option>
+            <option value="Imaging / Scan">Imaging / Scan</option>
+            <option value="Vaccination / Vitals">Vaccination / Vitals</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="resubmit_date">Date of Event</label>
+          <input type="date" id="resubmit_date" name="record_date" class="form-control" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="resubmit_provider">Healthcare Provider</label>
+        <input type="text" id="resubmit_provider" name="provider_name" class="form-control" required />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="resubmit_notes">Clinical Notes</label>
+        <textarea id="resubmit_notes" name="clinical_summary" class="form-control" rows="2"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Upload Clearer Replacement File (Optional)</label>
+        <input type="file" name="file" class="form-control" />
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px;">
+        <button type="button" class="btn btn-outline" data-close-modal>Cancel</button>
+        <button type="submit" class="btn btn-surgical">
+          <span class="material-symbols-outlined">send</span> Resubmit to Queue
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+function populateSummarySelectedRecords() {
+  const container = document.getElementById('hiddenRecordInputs');
+  container.innerHTML = '';
+  const checked = document.querySelectorAll('.record-selector:checked');
+  checked.forEach(cb => {
+    const hidden = document.createElement('input');
+    hidden.type = 'hidden';
+    hidden.name = 'selected_records';
+    hidden.value = cb.value;
+    container.appendChild(hidden);
+  });
+}
+</script>
+{% endblock %}

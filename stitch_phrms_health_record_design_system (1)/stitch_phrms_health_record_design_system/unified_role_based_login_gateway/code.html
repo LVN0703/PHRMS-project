@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_blank" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error-container": "#93000a", "inverse-surface": "#2d3134", "on-error": "#ffffff", "surface-tint": "#00658b", "secondary": "#006a6a", "clean-white": "#FFFFFF", "on-secondary": "#ffffff", "on-primary-fixed-variant": "#004c69", "primary-fixed": "#c4e7ff", "surface-container-low": "#f1f4f8", "background": "#f7fafd", "secondary-fixed": "#93f2f2", "on-background": "#181c1f", "surface-container-highest": "#e0e3e7", "primary-fixed-dim": "#7cd0ff", "primary-container": "#007ba7", "error": "#ba1a1a", "tertiary": "#834d00", "cool-gray": "#A9B0B3", "on-tertiary-fixed": "#2c1600", "inverse-primary": "#7cd0ff", "surface-container-lowest": "#ffffff", "primary": "#006184", "inverse-on-surface": "#eef1f5", "app-bg": "#F4F7F8", "on-secondary-fixed-variant": "#004f4f", "surface-bright": "#f7fafd", "on-surface-variant": "#3f484e", "on-tertiary-fixed-variant": "#683c00", "outline-variant": "#bfc8cf", "text-secondary": "#5A6570", "surface-variant": "#e0e3e7", "surface-dim": "#d7dade", "secondary-container": "#90efef", "health-green": "#4CAF50", "surface-container-high": "#e5e8ec", "error-container": "#ffdad6", "on-surface": "#181c1f", "on-secondary-container": "#006e6e", "text-primary": "#1E293B", "aid-red": "#D62828", "on-primary-fixed": "#001e2c", "outline": "#6f787f", "surface": "#f7fafd", "on-primary-container": "#f5faff", "tertiary-container": "#a36410", "secondary-fixed-dim": "#76d6d5", "on-tertiary": "#ffffff", "tertiary-fixed": "#ffdcbc", "on-secondary-fixed": "#002020", "surface-container": "#ebeef2", "tertiary-fixed-dim": "#ffb86c", "on-tertiary-container": "#fff8f4", "on-primary": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "16px", "gutter": "24px", "space-xl": "32px", "space-xs": "4px", "space-lg": "24px", "space-sm": "8px", "margin": "32px" }, "fontFamily": { "headline-lg": [ "Inter" ], "label-md": [ "Plus Jakarta Sans" ], "body-lg": [ "Inter" ], "label-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Inter" ], "headline-md": [ "Inter" ], "body-sm": [ "Inter" ], "mono-data": [ "JetBrains Mono" ], "headline-sm": [ "Inter" ] }, "fontSize": { "headline-lg": [ "32px", { "lineHeight": "40px", "fontWeight": "600" } ], "label-md": [ "14px", { "lineHeight": "20px", "fontWeight": "500" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "label-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "500" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-md": [ "24px", { "lineHeight": "32px", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "mono-data": [ "13px", { "lineHeight": "18px", "fontWeight": "400" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "fontWeight": "600" } ] } } } }</script></head><body class="bg-background font-body-md text-body-md text-on-surface"><main class="w-full min-h-screen bg-background flex flex-col justify-center items-center p-space-lg"><div class="flex flex-col w-full">
+<div class="w-full max-w-7xl mx-auto py-space-md px-gutter">
+<div class="bg-surface-container-lowest rounded-xl shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[760px]">
+<div class="lg:col-span-5 bg-gradient-to-br from-primary-container via-primary to-secondary p-space-xl text-on-primary flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-clean-white/10 blur-3xl pointer-events-none"></div>
+<div class="absolute -left-16 -bottom-16 w-72 h-72 rounded-full bg-secondary-fixed/20 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col gap-space-lg">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-clean-white/15 backdrop-blur-md flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-clean-white text-[28px]" style="font-variation-settings: 'FILL' 1;">vital_signs</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-headline-md tracking-tight text-clean-white">PHRMS</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-mono-data text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider">v4.8</span>
+</div>
+<p class="font-label-sm text-label-sm text-primary-fixed opacity-90">Personal Health Record Management Suite</p>
+</div>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-clean-white/10 backdrop-blur-md w-fit">
+<span class="material-symbols-outlined text-secondary-fixed text-sm" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-mono-data text-label-sm tracking-wide text-clean-white font-medium">256-Bit TLS &amp; HL7-FHIR v4.0.1 Compliant</span>
+</div>
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<h1 class="font-headline-md text-headline-md text-clean-white leading-snug">
+              One Gateway. Unified Institutional Security.
+            </h1>
+<p class="font-body-md text-body-md text-primary-fixed/90 leading-relaxed">
+              Role-determined workspace routing dynamically establishes contextual views upon authenticated identity: Patient User, Attending Physician, Operations Registrar, or System Administrator.
+            </p>
+</div>
+<div class="p-space-md rounded-xl bg-clean-white/10 backdrop-blur-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between text-clean-white">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed">Gateway Topology</span>
+<span class="flex items-center gap-1.5 font-mono-data text-label-sm text-clean-white">
+<span class="w-2 h-2 rounded-full bg-health-green animate-pulse"></span>
+                Node Active
+              </span>
+</div>
+<div class="w-full py-1">
+<svg class="w-full h-12 text-secondary-fixed" fill="none" viewbox="0 0 320 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 24H60L72 8L84 40L96 16L108 32L120 24H180L192 12L204 36L216 20L228 28L240 24H320" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs font-mono-data text-label-sm text-clean-white/80">
+<div class="flex flex-col">
+<span class="text-[11px] text-primary-fixed">Latency</span>
+<span class="font-semibold text-clean-white">12ms (Sri Lanka Core)</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[11px] text-primary-fixed">Access Token</span>
+<span class="font-semibold text-clean-white">Scoped Ephemeral JWT</span>
+</div>
+</div>
+</div>
+</div>
+<div class="relative z-10 pt-space-lg flex items-center justify-between font-label-sm text-label-sm text-primary-fixed/80">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">lock</span>
+            National Health Grid Auth
+          </span>
+<span class="font-mono-data">SEC-ID: LK-PHR-8091</span>
+</div>
+</div>
+<div class="lg:col-span-7 p-space-xl flex flex-col justify-between bg-surface-container-lowest">
+<div>
+<div class="flex items-start justify-between pb-space-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-text-primary">Institutional Access</h2>
+<p class="font-body-md text-body-md text-text-secondary">Enter credentials or switch to instant simulated clinical profiles</p>
+</div>
+<div class="flex items-center gap-1 px-3 py-1 bg-surface-container rounded-full text-text-secondary font-mono-data text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+              Identity Broker
+            </div>
+</div>
+<form class="flex flex-col gap-space-md" id="authForm" onsubmit="event.preventDefault(); simulateSubmit();">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-text-primary flex items-center justify-between" for="institutionEmail">
+<span>Institution Account / Email</span>
+<span class="font-mono-data text-label-sm text-primary font-semibold uppercase tracking-wider bg-surface-container-low px-2 py-0.5 rounded-full" id="roleBadge">Custom Input</span>
+</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-cool-gray pointer-events-none text-xl">alternate_email</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-surface-container-lowest rounded-lg font-body-md text-body-md text-text-primary outline-none focus:bg-clean-white shadow-sm transition-all" id="institutionEmail" onblur="this.style.boxShadow='0 0 0 1px #bfc8cf'" onfocus="this.style.boxShadow='0 0 0 2px #007ba7'" placeholder="name@hospital.lk" required="" style="box-shadow: 0 0 0 1px #bfc8cf;" type="email" value="amara.perera@health.lk"/>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-text-primary" for="passwordField">Password</label>
+<button class="font-label-sm text-label-sm text-primary hover:underline" onclick="togglePasswordVisibility()" type="button">Show</button>
+</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-cool-gray pointer-events-none text-xl">key</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-surface-container-lowest rounded-lg font-body-md text-body-md text-text-primary outline-none focus:bg-clean-white shadow-sm transition-all" id="passwordField" onblur="this.style.boxShadow='0 0 0 1px #bfc8cf'" onfocus="this.style.boxShadow='0 0 0 2px #007ba7'" required="" style="box-shadow: 0 0 0 1px #bfc8cf;" type="password" value="ClinicalSecure#2025"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-text-primary" for="twoFactorField">2FA Token / FIDO2</label>
+<span class="font-mono-data text-label-sm text-cool-gray">6-digit PIN</span>
+</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-cool-gray pointer-events-none text-xl">token</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-surface-container-lowest rounded-lg font-mono-data text-body-md text-text-primary tracking-widest outline-none focus:bg-clean-white shadow-sm transition-all" id="twoFactorField" maxlength="6" onblur="this.style.boxShadow='0 0 0 1px #bfc8cf'" onfocus="this.style.boxShadow='0 0 0 2px #007ba7'" style="box-shadow: 0 0 0 1px #bfc8cf;" type="text" value="784920"/>
+</div>
+</div>
+</div>
+<button class="w-full mt-1 bg-primary hover:bg-primary-container text-on-primary py-3 px-4 rounded-lg font-label-md text-label-md font-semibold shadow-md flex items-center justify-center gap-2 transition-colors cursor-pointer" id="submitBtn" type="submit">
+<span class="material-symbols-outlined text-xl">login</span>
+<span id="btnText">Authenticate &amp; Enter Authorized Workspace</span>
+</button>
+</form>
+<div class="my-space-lg flex items-center gap-space-md">
+<div class="flex-1 h-[1px] bg-surface-variant"></div>
+<span class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider px-2">Instant Academic Demo Login — Select Role</span>
+<div class="flex-1 h-[1px] bg-surface-variant"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm" id="roleGrid">
+<div class="role-card p-3.5 rounded-xl cursor-pointer bg-surface-container-low hover:bg-primary-fixed/20 transition-all flex flex-col justify-between gap-2" id="card-patient" onclick="selectRole('patient', 'amara.perera@health.lk', 'NHI #894021 - Amara Perera', 'Patient Dashboard &amp; Timeline', 'Patient / User Portal')">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">person</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-text-primary font-semibold">Patient / User</h3>
+<p class="font-body-sm text-body-sm text-text-secondary">Amara Perera</p>
+</div>
+</div>
+<span class="bg-surface-container px-2 py-0.5 rounded-full font-mono-data text-[11px] text-text-secondary">NHI-894021</span>
+</div>
+<div class="flex items-center justify-between text-body-sm pt-1">
+<span class="text-text-secondary text-[12px] flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary">arrow_forward</span>
+                  Timeline &amp; Consent Locker
+                </span>
+<span class="material-symbols-outlined text-primary text-base font-semibold check-icon">radio_button_checked</span>
+</div>
+</div>
+<div class="role-card p-3.5 rounded-xl cursor-pointer bg-surface-container-low hover:bg-primary-fixed/20 transition-all flex flex-col justify-between gap-2" id="card-physician" onclick="selectRole('physician', 'dr.bandara@hospital.lk', 'SLMC #18420 - Dr. Nalin Bandara', 'Specialist Briefings &amp; Clinical Dossier', 'Doctor / Physician Portal')">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-xl">stethoscope</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-text-primary font-semibold">Attending Physician</h3>
+<p class="font-body-sm text-body-sm text-text-secondary">Dr. Nalin Bandara</p>
+</div>
+</div>
+<span class="bg-surface-container px-2 py-0.5 rounded-full font-mono-data text-[11px] text-text-secondary">SLMC-18420</span>
+</div>
+<div class="flex items-center justify-between text-body-sm pt-1">
+<span class="text-text-secondary text-[12px] flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary">arrow_forward</span>
+                  Cardiology Dossier &amp; Rx
+                </span>
+<span class="material-symbols-outlined text-cool-gray text-base check-icon">radio_button_unchecked</span>
+</div>
+</div>
+<div class="role-card p-3.5 rounded-xl cursor-pointer bg-surface-container-low hover:bg-primary-fixed/20 transition-all flex flex-col justify-between gap-2" id="card-registrar" onclick="selectRole('registrar', 'malini.fernando@phrms.gov.lk', 'REG-88410 - Malini Fernando', 'Verification Queue &amp; Triage Desk', 'Operations Workspace')">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-xl">badge</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-text-primary font-semibold">Operations Registrar</h3>
+<p class="font-body-sm text-body-sm text-text-secondary">Malini Fernando</p>
+</div>
+</div>
+<span class="bg-surface-container px-2 py-0.5 rounded-full font-mono-data text-[11px] text-text-secondary">REG-88410</span>
+</div>
+<div class="flex items-center justify-between text-body-sm pt-1">
+<span class="text-text-secondary text-[12px] flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary">arrow_forward</span>
+                  Triage &amp; Intake Validation
+                </span>
+<span class="material-symbols-outlined text-cool-gray text-base check-icon">radio_button_unchecked</span>
+</div>
+</div>
+<div class="role-card p-3.5 rounded-xl cursor-pointer bg-surface-container-low hover:bg-primary-fixed/20 transition-all flex flex-col justify-between gap-2" id="card-admin" onclick="selectRole('admin', 'admin.sec@phrms.gov.lk', 'SEC-01 - K. Wickramasinghe', 'Access Governance &amp; System Matrix', 'System Administrator')">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-text-primary">
+<span class="material-symbols-outlined text-xl">admin_panel_settings</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-text-primary font-semibold">System Administrator</h3>
+<p class="font-body-sm text-body-sm text-text-secondary">K. Wickramasinghe</p>
+</div>
+</div>
+<span class="bg-surface-container px-2 py-0.5 rounded-full font-mono-data text-[11px] text-text-secondary">SUPER-01</span>
+</div>
+<div class="flex items-center justify-between text-body-sm pt-1">
+<span class="text-text-secondary text-[12px] flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary">arrow_forward</span>
+                  Audit Matrix &amp; Key Vault
+                </span>
+<span class="material-symbols-outlined text-cool-gray text-base check-icon">radio_button_unchecked</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low rounded-xl p-3 flex items-center justify-between gap-space-sm text-text-secondary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">security_update_good</span>
+<div class="font-body-sm text-body-sm">
+<span class="font-semibold text-text-primary" id="routeBanner">Routing Target: Patient Dashboard &amp; Timeline</span>
+<span class="hidden sm:inline"> — Dynamic sidebar permissions and accessibility tokens attach on dispatch.</span>
+</div>
+</div>
+<span class="font-mono-data text-label-sm bg-surface-container-lowest px-2.5 py-1 rounded text-primary whitespace-nowrap">RBAC: Active</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let activeRoleKey = 'patient';
+
+  function togglePasswordVisibility() {
+    const passwordInput = document.getElementById('passwordField');
+    const button = event.target;
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      button.innerText = 'Hide';
+    } else {
+      passwordInput.type = 'password';
+      button.innerText = 'Show';
+    }
+  }
+
+  function selectRole(roleKey, email, identityLabel, routeName, displayTitle) {
+    activeRoleKey = roleKey;
+    document.getElementById('institutionEmail').value = email;
+    document.getElementById('roleBadge').innerText = displayTitle;
+    document.getElementById('routeBanner').innerText = 'Routing Target: ' + routeName;
+
+    const cards = document.querySelectorAll('.role-card');
+    cards.forEach(card => {
+      const checkIcon = card.querySelector('.check-icon');
+      if (card.id === 'card-' + roleKey) {
+        card.classList.remove('bg-surface-container-low');
+        card.classList.add('bg-primary-fixed/20');
+        if (checkIcon) {
+          checkIcon.innerText = 'radio_button_checked';
+          checkIcon.classList.remove('text-cool-gray');
+          checkIcon.classList.add('text-primary');
+        }
+      } else {
+        card.classList.remove('bg-primary-fixed/20');
+        card.classList.add('bg-surface-container-low');
+        if (checkIcon) {
+          checkIcon.innerText = 'radio_button_unchecked';
+          checkIcon.classList.remove('text-primary');
+          checkIcon.classList.add('text-cool-gray');
+        }
+      }
+    });
+  }
+
+  function simulateSubmit() {
+    const btn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const targetRoute = document.getElementById('routeBanner').innerText;
+    
+    btn.disabled = true;
+    btn.classList.add('opacity-80');
+    btnText.innerText = 'Verifying Identity & Generating Token...';
+
+    setTimeout(() => {
+      btnText.innerText = 'Redirecting to ' + targetRoute.replace('Routing Target: ', '') + '...';
+      setTimeout(() => {
+        btnText.innerText = 'Authenticated ✓ Session Established';
+        btn.classList.remove('bg-primary', 'hover:bg-primary-container');
+        btn.classList.add('bg-secondary');
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.classList.remove('opacity-80', 'bg-secondary');
+          btn.classList.add('bg-primary');
+          btnText.innerText = 'Authenticate & Enter Authorized Workspace';
+        }, 1800);
+      }, 700);
+    }, 900);
+  }
+</script></main></body></html>
